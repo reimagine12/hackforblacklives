@@ -1,0 +1,11 @@
+.intro__instructions {
+    border: 2px solid #000;
+    background-color: #fff;
+    color: #000;
+    text-align: left;
+    padding: 20px;
+}
+
+.intro__highlight {
+    color: #f75590;
+}
