@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { categories, data } from '../../config.js';
+import { categories, data, max } from '../../config.js';
 
 
 export default class Chart extends Component {
@@ -8,6 +8,7 @@ export default class Chart extends Component {
     police: {
       amount: data['police'].initial_amount,
       allocation: 0,
+      outcomeNumber: 0,
     },
     community_garden: {
       amount: data['community_garden'].initial_amount,
@@ -68,33 +69,40 @@ export default class Chart extends Component {
   }
 
   increase = (value, category) => {
-    const newAmount = this.state[category].amount + value
+    if (this.state.police.amount === 0) {
+      const allOutcomes = ['police', ...this.state.outcomeCategories]
+      this.setState({
+        outcomeCategories: allOutcomes,
+      });
+      return;
+    }
     const newAllocation = this.state[category].allocation + value
-    const policeAmount = this.state['police'].amount - value
+    if (newAllocation > max) {
+      return;
+    }
     const outcomeNumber = Number(Math.floor((newAllocation / data[category].per_unit)))
-
     let newOutcomes = this.state.outcomeCategories;
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
-      newOutcomes = [category, ...this.state.outcomeCategories]
+      newOutcomes = [category, ...this.state.outcomeCategories];
     } 
-
     this.setState({
       [category]: { 
-        amount: newAmount, 
+        amount: this.state[category].amount + value,
         allocation: newAllocation, 
         outcomeNumber: outcomeNumber
       },
-      police: { amount: policeAmount },
+      police: { amount: this.state['police'].amount - value },
       outcomeCategories: newOutcomes,
     })
   }
 
   decrease = (value, category) => {
-    const newAmount = this.state[category].amount - value
-    const newAllocation = this.state[category].allocation - value
-    const policeAmount = this.state['police'].amount + value
+    const newAmount = this.state[category].amount - value;
+    if (newAmount < data[category].initial_amount) {
+      return;
+    }
+    const newAllocation = this.state[category].allocation - value;
     const outcomeNumber = Number(Math.floor((newAllocation / data[category].per_unit)))
-
     let newOutcomes = this.state.outcomeCategories;
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
       const index = newOutcomes.indexOf(category);
@@ -107,9 +115,9 @@ export default class Chart extends Component {
       [category]: { 
         amount: newAmount, 
         allocation: newAllocation, 
-        outcomeNumber: outcomeNumber
+        outcomeNumber: outcomeNumber,
       },
-      police: { amount: policeAmount },
+      police: { amount: this.state['police'].amount + value },
       outcomeCategories: newOutcomes,
     })
   }

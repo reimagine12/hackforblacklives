@@ -11,7 +11,7 @@ export const categories = [
   'free_transportation',
   'mental_health',
   'head_start',
-]
+];
 
 export const max = 6000000000;
 
@@ -20,6 +20,7 @@ export const data = {
     id: 1,
     title: 'Police',
     initial_amount: 5000000000,
+    impact: 'all the things that make people healthier and safer. And you defunded the police! Great job',
   },
   'arts_and_culture': {
     id: 2,
@@ -104,5 +105,5 @@ export const data = {
     initial_amount: 10000000,
     impact: 'ventilators'
   },
-}
+};
 
