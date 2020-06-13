@@ -5,7 +5,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      <header className="title">
         Welcome to Reimagine12
       </header>
       <Chart />

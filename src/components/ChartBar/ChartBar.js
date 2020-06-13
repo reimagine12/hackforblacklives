@@ -2,7 +2,7 @@ import React from 'react';
 import './ChartBar.css';
 
 function ChartBar(props) {
-  const { data } = props;
+  const { data, increaseBudget, decreaseBudget } = props;
   const state = {
     dragging: false,
     lastMouseY: null,
@@ -15,8 +15,11 @@ function ChartBar(props) {
 
   const updateHeight = e => {
     const delta = state.lastMouseY-e.clientY;
-    console.log('dragged', delta);
-    //convert pixel delta into percentage of total height, then add percentage to updated value
+    const domElement = document.getElementById(`chartBar-${data.id}`);
+    const dollarsPerPixel = Math.floor(state.maxValue / domElement.clientHeight);
+    delta > 0 
+      ? increaseBudget(delta * dollarsPerPixel, data.id) 
+      : decreaseBudget(delta * -1 * dollarsPerPixel, data.id);
   };
 
   const startDrag = e => {
@@ -34,16 +37,16 @@ function ChartBar(props) {
   };
 
   return (
-    <div className='chartBar'>
+    <div className='chartBar' id={`chartBar-${data.id}`}>
       <div className='chartBar-label'>{data.label} - ${state.updatedValue.toLocaleString()}</div>
-      <div id={`chartBar-${data.id}`} className='chartBar-color' 
+      <div className='chartBar-color' 
         style={{
           backgroundColor: data.color, 
           height: getHeight()
           }} 
         onMouseDown={startDrag}
         onMouseUp={stopDrag}
-        onMouseLeave={stopDrag}
+        onMouseLeave={state.dragging ? stopDrag : null}
         />
     </div>
   );

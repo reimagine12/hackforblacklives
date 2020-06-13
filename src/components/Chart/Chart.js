@@ -20,10 +20,18 @@ function Chart() {
     ]
   }
 
+  const increase = (amount, service) => {
+    console.log("increasing ", service, " by ", amount);
+  }
+
+  const decrease = (amount, service) => {
+    console.log("decreasing ", service, " by ", amount);
+  }
+
   return (
     <div className="chart">
       <div className="chartBars">
-        {state.services.map(service => <ChartBar key={service.id} data={service} />)}
+        {state.services.map(service => <ChartBar key={service.id} data={service} increaseBudget={increase} decreaseBudget={decrease} />)}
       </div>
     </div>
   );
