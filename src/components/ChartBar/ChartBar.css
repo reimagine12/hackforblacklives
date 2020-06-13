@@ -6,5 +6,15 @@
   text-orientation: mixed;
   writing-mode: vertical-rl;
   text-align: end;
+  position: relative;
+}
+
+.chartBar .chartBar-color {
+  border-radius: 5px;
+  width: 30px;
+  text-align: end;
   cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  left: 0px;
 }
