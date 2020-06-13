@@ -1,0 +1,10 @@
+.chartBar {
+  margin: 10px;
+  padding: 10px 0;
+  border-radius: 5px;
+  width: 30px;
+  text-orientation: mixed;
+  writing-mode: vertical-rl;
+  text-align: end;
+  cursor: pointer;
+}
