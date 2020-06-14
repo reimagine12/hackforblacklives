@@ -10,9 +10,6 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
-// import housing from './housing.png';
-// import head_start from './head_start.png'; 
-
 export default class Chart extends Component {
 
   state = {
@@ -118,15 +115,14 @@ export default class Chart extends Component {
               </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
-              const categoryFromData = this.getDataById(outcomeCategory, data);
               return (
                 <div>
                   <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
                     <ListItemIcon>
-                      <img src={categoryFromData.image} style={{marginRight: '5px'}}></img>
+                      <img src={data[category.name].image} style={{marginRight: '5px', height: '65px'}}></img>
                     </ListItemIcon>
-                     You funded {category.outcomeNumber} {categoryFromData.impact}!
+                     You funded {category.outcomeNumber} {data[category.name].impact}!
                   </ListItem>
                 </div>
               );
