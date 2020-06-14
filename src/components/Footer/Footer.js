@@ -1,8 +1,9 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
+import './Footer.css'
 
 const Intro = () => (
-    <Container classes={}>
+    <Container maxWidth="false" className="footer">
         [Footer]
     </Container>
 )
