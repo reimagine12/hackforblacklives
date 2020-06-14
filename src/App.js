@@ -17,7 +17,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Container maxWidth="false" disableGutters="true" className="container">
+      <Container maxWidth={false} disableGutters={true} className="container">
         <Container className="content">
           <Grid container spacing={2}>
             <Grid item sm={12} md={8}>
