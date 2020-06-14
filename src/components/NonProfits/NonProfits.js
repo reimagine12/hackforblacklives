@@ -25,7 +25,6 @@ const NonProfits = () => (
           </CardContent>
         </Card>
         <Button
-          className='card__button'
           href={nonProfit.path}
           style={{backgroundColor:'white', marginTop: '10px'}}
           variant="contained"
