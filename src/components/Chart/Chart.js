@@ -3,6 +3,11 @@ import ChartScale from '../ChartScale/ChartScale'
 import { categories, data, max } from '../../config.js';
 import './Chart.css';
 import ChartBar from './../ChartBar/ChartBar';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
 
 export default class Chart extends Component {
@@ -24,7 +29,6 @@ export default class Chart extends Component {
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
-    // console.log('increasing', category);
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
 
@@ -39,7 +43,8 @@ export default class Chart extends Component {
     if (newAllocation > max) {
       return;
     }
-    const outcomeNumber = Number(Math.floor((newAllocation / this.getCategoryById(category).per_unit)))
+    const denom = this.getDataById(category).per_unit
+    const outcomeNumber = Number(Math.floor(newAllocation / denom))
     let newOutcomes = this.state.outcomeCategories;
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
       newOutcomes = [category, ...this.state.outcomeCategories];
@@ -59,7 +64,6 @@ export default class Chart extends Component {
   }
 
   decrease = (value, category) => {
-    // console.log('decreasing', category);
 
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
@@ -70,7 +74,8 @@ export default class Chart extends Component {
     }
 
     const newAllocation = currentCategory.allocation - value;
-    const outcomeNumber = Number(Math.floor((newAllocation / this.getDataById(category).per_unit)))
+    const denom = this.getDataById(category).per_unit
+    const outcomeNumber = Number(Math.floor((newAllocation / denom)))
     let newOutcomes = this.state.outcomeCategories;
 
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
@@ -105,12 +110,14 @@ export default class Chart extends Component {
         </div>
         <div>
           <div>OUTCOMES</div>
+          
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
-              const categoryFromData = this.getCategoryById(outcomeCategory, data);
+              const categoryFromData = this.getDataById(outcomeCategory, data);
+              console.log('category', categoryFromData)
               return (
               <div>
-                You funded { category.outcomeNumber } {categoryFromData.impact} !
+                You funded { category.outcomeNumber } { categoryFromData.impact } !
               </div>
               );
             })}
