@@ -9,19 +9,22 @@ export default class Chart extends Component {
   state = {
     categories: categories.map(category => ({
       id: data[category].id,
+      name: category,
       label: data[category].title,
       amount: data[category].initial_amount,
       allocation: 0,
       outcomeNumber: 0,
-    })).sort(),
+    })).sort(this.sortById),
     outcomeCategories: [],
   }
 
-  getCategoryById = (categoryName, dataSet = this.state.categories) => dataSet.find(category => category.id === categoryName);
-
+  getCategoryById = (categoryName) => this.state.categories.find(category => category.id === categoryName);
+  getDataById = (categoryName) => data[categories[categoryName]];
+  sortById = (a, b) => a.id - b.id;
+  
   increase = (value, category) => {
     console.log('increasing', category);
-    const police = this.getCategoryById('police');
+    const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
 
     if (police.amount === 0) {
@@ -40,13 +43,15 @@ export default class Chart extends Component {
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
       newOutcomes = [category, ...this.state.outcomeCategories];
     } 
+    const newCategories = [...this.state.categories.filter(cat => cat.id !== category), { 
+      ...currentCategory,
+      amount: currentCategory.amount + value, 
+      allocation: newAllocation, 
+      outcomeNumber: outcomeNumber,
+    }].sort(this.sortById);
+
     this.setState({
-      categories: [...this.state.categories.filter(cat => cat.id !== category), { 
-        ...currentCategory,
-        amount: currentCategory.amount + value, 
-        allocation: newAllocation, 
-        outcomeNumber: outcomeNumber,
-      }].sort(),
+      categories: newCategories,
       police: { amount: police.amount - value },
       outcomeCategories: newOutcomes,
     })
@@ -55,16 +60,16 @@ export default class Chart extends Component {
   decrease = (value, category) => {
     console.log('decreasing', category);
 
-    const police = this.getCategoryById('police');
+    const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
 
-    if (newAmount < this.getCategoryById(category, data).initial_amount) {
+    if (newAmount < this.getDataById(category).initial_amount) {
       return;
     }
 
     const newAllocation = currentCategory.allocation - value;
-    const outcomeNumber = Number(Math.floor((newAllocation / this.getCategoryById(category, data).per_unit)))
+    const outcomeNumber = Number(Math.floor((newAllocation / this.getDataById(category).per_unit)))
     let newOutcomes = this.state.outcomeCategories;
 
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
@@ -74,13 +79,15 @@ export default class Chart extends Component {
       }
     } 
 
+    const newCategories = [...this.state.categories.filter(cat => cat.id !== category), { 
+      ...currentCategory,
+      amount: newAmount, 
+      allocation: newAllocation, 
+      outcomeNumber: outcomeNumber,
+    }].sort(this.sortById);
+
     this.setState({
-      categories: [...this.state.categories.filter(cat => cat.id !== category), { 
-        ...currentCategory,
-        amount: newAmount, 
-        allocation: newAllocation, 
-        outcomeNumber: outcomeNumber,
-      }].sort(),
+      categories: newCategories,
       police: { amount: police.amount + value },
       outcomeCategories: newOutcomes,
     })
