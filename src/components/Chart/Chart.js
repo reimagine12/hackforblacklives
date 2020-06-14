@@ -108,18 +108,18 @@ export default class Chart extends Component {
           </div>
           <ChartScale />
         </div>
-        <div>
-          <div style={{width: '100%', width: 360, backgroundColor: 'white'}}>
+        <div style={{position: 'relative', height: '470px'}}>
+          <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
             <List component="nav" aria-label="main mailbox folders">
               <ListItem button>
-                 Achievements
+                 <b>Achievements</b>
               </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
               const categoryFromData = this.getDataById(outcomeCategory, data);
               return (
                 <div>
-                  <Divider />
+                  <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
                      You funded { category.outcomeNumber } { categoryFromData.impact } !
                   </ListItem>

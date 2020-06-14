@@ -1,5 +1,4 @@
 .chart {
-  padding: 2em;
   margin: 1em;
   color: #000;
   max-width: 100%;
@@ -11,4 +10,5 @@
 
 .chart__container {
 	display: flex;
+	padding: 2em;
 }
