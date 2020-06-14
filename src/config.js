@@ -102,3 +102,19 @@ export const data = {
     impact: 'zero interest loans for small businesses',
   }
 };
+
+export const nonProfits = [
+  {
+    'name': 'Communities United for Police Reform',
+    'path': 'https://www.changethenypd.org/',
+  },
+  {
+    'name': 'Justice Committee',
+    'path': 'https://www.justicecommittee.org',
+  },
+  {
+    'name': 'Equality for Flatbush',
+    'path': 'http://www.equalityforflatbush.org/',
+  },
+]
+

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import ChartScale from '../ChartScale/ChartScale'
+import { categories, data, max } from '../../config.js';
 import './Chart.css';
 import ChartBar from './../ChartBar/ChartBar';
-import { categories, data, max } from '../../config.js';
 
 
 export default class Chart extends Component {
@@ -100,8 +101,8 @@ export default class Chart extends Component {
           <div className="chartBars">
             {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
           </div>
+          <ChartScale />
         </div>
-
         <div>
           <div>OUTCOMES</div>
             { this.state.outcomeCategories.map(outcomeCategory => {
@@ -116,5 +117,5 @@ export default class Chart extends Component {
         </div>
       </div>
     )
-  };
+  }
 }
