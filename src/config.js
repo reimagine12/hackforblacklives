@@ -120,7 +120,7 @@ export const data = {
     title: 'Small Business Services',
     per_unit: 75000,
     initial_amount: 160800000,
-    image: housing,
+    image: small_business_services,
     impact: 'zero interest loans for small businesses',
   }
 };
