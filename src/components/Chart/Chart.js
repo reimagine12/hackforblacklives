@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ChartScale from '../ChartScale/ChartScale'
 import { categories, data, max } from '../../config.js';
 import './Chart.css';
 
@@ -127,6 +127,9 @@ export default class Chart extends Component {
   render() {
     return (
       <div>
+        <div className="chart">
+          <ChartScale />
+        </div>
       <div>
         {categories.map(category => (
           <div key={data[category].id}>
