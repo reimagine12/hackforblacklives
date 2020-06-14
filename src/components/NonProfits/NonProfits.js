@@ -22,8 +22,7 @@ const NonProfits = () => (
         <Card style={{height: '65%', marginRight: '5px'}}>
           <CardContent>
               {nonProfit.name}
-            
-         <img src={cpr} alt="Communities United for Police Reform" width="200" height="200" />
+              {nonProfit.image}
    
           </CardContent>
         </Card>
