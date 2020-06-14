@@ -1,19 +1,21 @@
+export const max = 6000000000;
+
+export const barColors = ['red', 'orange', 'yellow', 'green', 'crimson', 'cornsilk', 'violet', 'blue', 'pink', 'teal', 'black', 'blue', 'gray'];
+
 export const categories = [
   'police',
-  'seniors',
-  'health_and_hospitals',
-  'infrastructure',
-  'homeless_services',
-  'small_business_services',
-  'mental_health',
+  'arts_and_culture',
   'head_start',
+  'homeless_services',
+  'mental_health',
+  'health_and_hospitals',
+  'seniors',
+  'infrastructure',
   'veterans_services',
   'fire_and_ems',
   'housing',
-  'arts_and_culture',
+  'small_business_services'
 ];
-
-export const max = 6000000000;
 
 export const data = {
   'police': {

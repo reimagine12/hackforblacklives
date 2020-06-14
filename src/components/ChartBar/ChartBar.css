@@ -1,0 +1,33 @@
+.chartBar {
+  margin: 10px;
+  padding: 10px 0;
+  border-radius: 5px;
+  width: 30px;
+  text-orientation: mixed;
+  writing-mode: vertical-rl;
+  text-align: end;
+  position: relative;
+  height: 450px;
+}
+
+/* police bar doesn't have interactions */
+.chartBar#chartBar-1 {
+  cursor: auto;
+}
+
+.chartBar .chartBar-color {
+  border-radius: 5px;
+  width: 30px;
+  text-align: end;
+  cursor: pointer;
+  position: absolute;
+  bottom: 10px;
+  left: 0px;
+}
+
+.chartBar .chartBar-label {
+  pointer-events: none;
+  z-index: 2;
+  position: absolute;
+  bottom: 20px
+}
