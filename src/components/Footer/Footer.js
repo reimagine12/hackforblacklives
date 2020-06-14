@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 import './Footer.css'
 
 const Footer = () => (
-    <Container maxWidth="false" className="footer">
+    <Container maxWidth={false} className="footer">
         [Footer]
     </Container>
 )
