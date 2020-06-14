@@ -1,6 +1,6 @@
 import React from 'react';
 import './ChartBar.css';
-import { data, max, colors } from '../../config.js';
+import { data, max, barColors } from '../../config.js';
 
 function ChartBar(props) {
   const { data, increaseBudget, decreaseBudget, order } = props;
@@ -40,7 +40,7 @@ function ChartBar(props) {
       <div className='chartBar-label'>{data.label} - ${state.updatedValue.toLocaleString()}</div>
       <div className='chartBar-color' 
         style={{
-          backgroundColor: colors[order], 
+          backgroundColor: barColors[order], 
           height: getHeight()
           }} 
         onMouseDown={startDrag}

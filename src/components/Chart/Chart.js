@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import './Chart.css';
 import ChartBar from './../ChartBar/ChartBar';
-import { data, max } from '../../config.js';
+import { categories, data, max } from '../../config.js';
 
 
 export default class Chart extends Component {
 
   state = {
-    categories: data.map(category => ({
-      id: category.id,
-      label: category.title,
-      amount: category.initial_amount,
+    categories: categories.map(category => ({
+      id: data[category].id,
+      label: data[category].title,
+      amount: data[category].initial_amount,
       allocation: 0,
       outcomeNumber: 0,
     })).sort(),

@@ -1,16 +1,31 @@
 export const max = 6000000000;
 
-export const colors = ['red', 'orange', 'yellow', 'green', 'crimson', 'cornsilk', 'violet', 'blue', 'pink', 'teal', 'black', 'blue', 'gray'];
+export const barColors = ['red', 'orange', 'yellow', 'green', 'crimson', 'cornsilk', 'violet', 'blue', 'pink', 'teal', 'black', 'blue', 'gray'];
 
-export const data = [
-  {
-    id: 'police',
+export const categories = [
+  'police',
+  'seniors',
+  'health_and_hospitals',
+  'infrastructure',
+  'homeless_services',
+  'small_business_services',
+  'mental_health',
+  'head_start',
+  'veterans_services',
+  'fire_and_ems',
+  'housing',
+  'arts_and_culture',
+];
+
+export const data = {
+  'police': {
+    id: 1,
     title: 'Police',
     initial_amount: 5570000000,
     impact: 'all the things that make people healthier and safer. And you defunded the police! Great job',
   },
-  {
-    id: 'arts',
+  'arts_and_culture': {
+    id: 2,
     title: 'Arts and Culture',
     per_unit: 12,
     initial_amount: 137000000,
@@ -87,4 +102,3 @@ export const data = [
     impact: 'zero interest loans for small businesses',
   }
 };
-
