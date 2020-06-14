@@ -3,7 +3,15 @@ import ChartScale from '../ChartScale/ChartScale'
 import { categories, data, max } from '../../config.js';
 import './Chart.css';
 import ChartBar from './../ChartBar/ChartBar';
+import { makeStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import Divider from '@material-ui/core/Divider';
 
+// import housing from './housing.png';
+// import head_start from './head_start.png'; 
 
 export default class Chart extends Component {
 
@@ -38,8 +46,8 @@ export default class Chart extends Component {
     if (newAllocation > max) {
       return;
     }
-    
-    const outcomeNumber = Math.floor((newAllocation / this.getDataById(category).per_unit));
+    const denom = this.getDataById(category).per_unit
+    const outcomeNumber = Number(Math.floor(newAllocation / denom))
     let newOutcomes = this.state.outcomeCategories;
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
       newOutcomes = [category, ...this.state.outcomeCategories];
@@ -68,7 +76,8 @@ export default class Chart extends Component {
     }
 
     const newAllocation = currentCategory.allocation - value;
-    const outcomeNumber = Number(Math.floor((newAllocation / this.getDataById(category).per_unit)))
+    const denom = this.getDataById(category).per_unit
+    const outcomeNumber = Number(Math.floor((newAllocation / denom)))
     let newOutcomes = this.state.outcomeCategories;
 
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
@@ -94,24 +103,36 @@ export default class Chart extends Component {
 
   render() {
     return (
-      <div>
+      <div className='chart__container'>
         <div className="chart">
           <div className="chartBars">
             {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
           </div>
           <ChartScale />
         </div>
-        <div>
-          <div>OUTCOMES</div>
+        <div style={{position: 'relative', height: '470px'}}>
+          <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
+            <List component="nav" aria-label="main mailbox folders">
+              <ListItem button>
+                 <b>Achievements</b>
+              </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
-              const categoryFromData = this.getCategoryById(outcomeCategory, data);
+              const categoryFromData = this.getDataById(outcomeCategory, data);
               return (
-              <div>
-                You funded { category.outcomeNumber } {categoryFromData.impact} !
-              </div>
+                <div>
+                  <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
+                  <ListItem button>
+                    <ListItemIcon>
+                      <img src={categoryFromData.image} style={{marginRight: '5px'}}></img>
+                    </ListItemIcon>
+                     You funded {category.outcomeNumber} {categoryFromData.impact}!
+                  </ListItem>
+                </div>
               );
             })}
+            </List>
+          </div>
         </div>
       </div>
     )
