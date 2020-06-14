@@ -19,9 +19,14 @@ function ChartBar(props) {
     const delta = state.lastMouseY-e.clientY;
     const domElement = document.getElementById(`chartBar-${data.id}`);
     const dollarsPerPixel = Math.floor(max / domElement.clientHeight);
-    delta > 0 
-      ? increaseBudget(delta + dollarsPerPixel, data.id) 
-      : decreaseBudget(delta * -1 + dollarsPerPixel, data.id);
+    const changeInDollars = Math.abs(delta + dollarsPerPixel);
+    if (delta > 0) {
+      increaseBudget(changeInDollars, data.id);
+      decreaseBudget(changeInDollars, 1);
+    } else {
+      decreaseBudget(changeInDollars, data.id);
+      increaseBudget(changeInDollars, 1);
+    }
   };
 
   const startDrag = e => {

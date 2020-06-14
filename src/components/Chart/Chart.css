@@ -9,3 +9,7 @@
 .chart .chartBars {
   display: flex;
 }
+
+.chart .chartBar-label {
+  transform: rotate(180deg);
+}

@@ -24,7 +24,6 @@ export default class Chart extends Component {
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
-    // console.log('increasing', category);
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
 
@@ -39,7 +38,8 @@ export default class Chart extends Component {
     if (newAllocation > max) {
       return;
     }
-    const outcomeNumber = Number(Math.floor((newAllocation / this.getCategoryById(category).per_unit)))
+    
+    const outcomeNumber = Math.floor((newAllocation / this.getDataById(category).per_unit));
     let newOutcomes = this.state.outcomeCategories;
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
       newOutcomes = [category, ...this.state.outcomeCategories];
@@ -59,8 +59,6 @@ export default class Chart extends Component {
   }
 
   decrease = (value, category) => {
-    // console.log('decreasing', category);
-
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
