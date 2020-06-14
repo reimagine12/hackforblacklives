@@ -29,7 +29,6 @@ function App() {
               <NonProfits />
             </Grid>
             <Grid item sm={12} md={3}>
-              {/* <Tweet /> */}
             </Grid>
           </Grid>
         </Container>

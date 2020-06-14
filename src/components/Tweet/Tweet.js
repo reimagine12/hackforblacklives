@@ -22,7 +22,6 @@ const Tweet = (props) => {
     })(Button);
 
     // check props for most recent/highest achievement
-    console.log(achievement)
     let message;
     if (achievement) {
         message = `@NYCMayor By cutting the NYPD budget, I managed to fund ${achievement.outcomeNumber} ${data[achievement.name].impact}! See what you can change:`;
