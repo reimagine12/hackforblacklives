@@ -10,6 +10,11 @@
   height: 450px;
 }
 
+/* police bar doesn't have interactions */
+.chartBar#chartBar-1 {
+  cursor: auto;
+}
+
 .chartBar .chartBar-color {
   border-radius: 5px;
   width: 30px;

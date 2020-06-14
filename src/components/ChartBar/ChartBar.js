@@ -10,6 +10,9 @@ function ChartBar(props) {
     updatedValue: data.amount
   };
 
+  // Police bar doens't get interactions
+  const interactions = order !== 0;
+
   const getHeight = () => state.updatedValue/max * 100 + '%';
 
   const updateHeight = e => {
@@ -17,8 +20,8 @@ function ChartBar(props) {
     const domElement = document.getElementById(`chartBar-${data.id}`);
     const dollarsPerPixel = Math.floor(max / domElement.clientHeight);
     delta > 0 
-      ? increaseBudget(delta * dollarsPerPixel, data.id) 
-      : decreaseBudget(delta * -1 * dollarsPerPixel, data.id);
+      ? increaseBudget(delta + dollarsPerPixel, data.id) 
+      : decreaseBudget(delta * -1 + dollarsPerPixel, data.id);
   };
 
   const startDrag = e => {
@@ -41,9 +44,9 @@ function ChartBar(props) {
           backgroundColor: barColors[order], 
           height: getHeight()
           }} 
-        onMouseDown={startDrag}
-        onMouseUp={stopDrag}
-        onMouseLeave={state.dragging ? stopDrag : null}
+        onMouseDown={interactions ? startDrag : null}
+        onMouseUp={interactions ? stopDrag : null}
+        onMouseLeave={state.dragging && interactions !== 0 ? stopDrag : null}
         />
     </div>
   );
