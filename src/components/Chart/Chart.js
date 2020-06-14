@@ -49,6 +49,7 @@ export default class Chart extends Component {
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor(newAllocation / denom))
     let newOutcomes = this.state.outcomeCategories;
+
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
       newOutcomes = [category, ...this.state.outcomeCategories];
     } 
@@ -119,15 +120,14 @@ export default class Chart extends Component {
               </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
-              const categoryFromData = this.getDataById(outcomeCategory, data);
               return (
                 <div>
                   <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
                     <ListItemIcon>
-                      <img src={categoryFromData.image} style={{marginRight: '5px'}}></img>
+                      <img src={data[category.name].image} style={{marginRight: '5px'}}></img>
                     </ListItemIcon>
-                     You funded {category.outcomeNumber} {categoryFromData.impact}!
+                     You funded {category.outcomeNumber} {data[category.name].impact}!
                   </ListItem>
                 </div>
               );
