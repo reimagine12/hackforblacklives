@@ -10,7 +10,19 @@ import mental_health_services from './mental_health_services.svg';
 
 export const max = 6000000000;
 
-export const barColors = ['red', 'orange', 'yellow', 'green', 'crimson', 'cornsilk', 'violet', 'blue', 'pink', 'teal', 'black', 'blue', 'gray'];
+export const barColors = [
+  'black', 
+  '#8F7CEE', 
+  '#F85788', 
+  '#5AECFC', 
+  '#00EC96', 
+  '#8F7CEE', 
+  '#F85788', 
+  '#5AECFC', 
+  '#00EC96', 
+  '#8F7CEE', 
+  '#F85788', 
+  '#5AECFC'];
 
 export const categories = [
   'police',

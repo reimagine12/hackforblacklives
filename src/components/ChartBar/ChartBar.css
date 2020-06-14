@@ -13,15 +13,19 @@
 /* police bar doesn't have interactions */
 .chartBar#chartBar-1 {
   cursor: auto;
+  color: #fff;
 }
 
 .chartBar .chartBar-color {
   border-radius: 5px;
-  width: 30px;
+  /* override inline style from rnd library */
+  width: 30px !important;
   text-align: end;
   cursor: pointer;
   position: absolute;
   bottom: 10px;
+  /* override inline style from rnd library */
+  top: unset !important; 
   left: 0px;
 }
 
@@ -29,5 +33,6 @@
   pointer-events: none;
   z-index: 2;
   position: absolute;
-  bottom: 20px
+  bottom: 20px;
+  left: 4px;
 }

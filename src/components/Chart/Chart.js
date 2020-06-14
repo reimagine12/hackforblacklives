@@ -64,7 +64,6 @@ export default class Chart extends Component {
   }
 
   decrease = (value, category) => {
-
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
