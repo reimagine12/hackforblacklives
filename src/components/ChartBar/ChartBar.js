@@ -16,11 +16,11 @@ function ChartBar(props) {
 
   const getHeight = () => state.updatedValue/max * 100 + '%';
 
-  const updateHeight = delta => {
+  const updateHeight = (delta) => {
     const domElement = document.getElementById(`chartBar-${data.id}`);
     const dollarsPerPixel = Math.floor(max / domElement.clientHeight);
-    const changeInDollars = Math.abs(delta + dollarsPerPixel);
-    if (delta > 0) {
+    const changeInDollars = Math.abs(delta.height * dollarsPerPixel);
+    if (delta.height > 0) {
       increaseBudget(changeInDollars, data.id);
       decreaseBudget(changeInDollars, 1);
     } else {
@@ -43,10 +43,6 @@ function ChartBar(props) {
         }}
         size={{ width: 30,  height: getHeight() }}
         onResizeStop={interactions ? (e, direction, ref, delta) => {
-          console.log({
-            width: ref.style.width,
-            height: ref.style.height
-          });
           updateHeight(delta);
         } : null}
       />
