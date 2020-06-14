@@ -6,9 +6,12 @@ import ChartBar from './../ChartBar/ChartBar';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 
+// import housing from './housing.png';
+// import head_start from './head_start.png'; 
 
 export default class Chart extends Component {
 
@@ -121,6 +124,9 @@ export default class Chart extends Component {
                 <div>
                   <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
+                    <ListItemIcon>
+                      <img src={categoryFromData.image} style={{marginRight: '5px'}}></img>
+                    </ListItemIcon>
                      You funded {category.outcomeNumber} {categoryFromData.impact}!
                   </ListItem>
                 </div>
