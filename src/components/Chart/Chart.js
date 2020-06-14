@@ -103,9 +103,11 @@ export default class Chart extends Component {
       <div className='chart__container'>
         <div className="chart">
           <div className="chartBars">
-            {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+            <ChartScale />
+            <div className="chartBars__wrapper">
+              {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+            </div>
           </div>
-          <ChartScale />
         </div>
         <div style={{position: 'relative', height: '470px'}}>
           <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>

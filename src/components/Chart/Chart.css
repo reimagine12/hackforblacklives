@@ -9,6 +9,10 @@
   display: flex;
 }
 
+.chartBars__wrapper {
+  display: flex;
+}
+
 .chart .chartBar-label {
   transform: rotate(180deg);
 }

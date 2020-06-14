@@ -1,5 +1,6 @@
 .chartBar {
   margin: 10px;
+  margin-bottom: 0;
   padding: 10px 0;
   border-radius: 5px;
   width: 30px;
@@ -23,7 +24,7 @@
   text-align: end;
   cursor: pointer;
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   /* override inline style from rnd library */
   top: unset !important; 
   left: 0px;
