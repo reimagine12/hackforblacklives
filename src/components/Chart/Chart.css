@@ -9,3 +9,7 @@
 .chart .chartBars {
   display: flex;
 }
+
+.chartBars__wrapper {
+  display: flex;
+}

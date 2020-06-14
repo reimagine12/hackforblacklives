@@ -99,9 +99,11 @@ export default class Chart extends Component {
       <div>
         <div className="chart">
           <div className="chartBars">
-            {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+            <ChartScale />
+            <div className="chartBars__wrapper">
+              {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+            </div>
           </div>
-          <ChartScale />
         </div>
         <div>
           <div>OUTCOMES</div>

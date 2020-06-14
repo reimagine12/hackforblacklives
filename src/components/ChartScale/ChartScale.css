@@ -1,13 +1,13 @@
 .chart-scale {
     display: block;
-    position: absolute;
-    top: 0;
+    width: 100%;
 }
 
 .chart-scale__label-container {
     display: flex;
     border-top: 1px solid #ccc;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .chart-scale__label {
@@ -27,6 +27,7 @@
 @media only screen and (min-width: 992px) {
     .chart-scale {
         display: inline-flex;
+        width: unset;
     }
 
     .chart-scale__label-container {
@@ -34,6 +35,7 @@
         flex-direction: column-reverse;
         border-right: 1px solid #ccc;
         border-top: none;
+        width: unset;
     }
 
     .chart-scale__label {
