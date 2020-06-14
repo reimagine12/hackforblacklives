@@ -1,57 +1,29 @@
 .chart-scale {
-    display: block;
-    width: 100%;
+    display: inline-flex;
+    width: unset;
 }
 
 .chart-scale__label-container {
     display: flex;
-    border-top: 1px solid #ccc;
-    justify-content: space-between;
-    width: 100%;
+    flex-direction: column-reverse;
+    border-right: 1px solid #000;
+    border-top: none;
+    width: unset;
 }
 
 .chart-scale__label {
-    font-size: 14px;
-    max-height: 40px;
+    max-height: none;
+    border-top: 1px solid #000;
 }
 
 .chart-scale__label::before {
-    display: block;
-    height: 10px;
-    border-right: 1px solid #ccc;
-    content: "";
+    display: none;
 }
 
-
-/* desktop */
-@media only screen and (min-width: 992px) {
-    .chart-scale {
-        display: inline-flex;
-        width: unset;
-    }
-
-    .chart-scale__label-container {
-        display: flex;
-        flex-direction: column-reverse;
-        border-right: 1px solid #ccc;
-        border-top: none;
-        width: unset;
-    }
-
-    .chart-scale__label {
-        max-height: none;
-    }
-
-    .chart-scale__label::before {
-        display: none;
-    }
-
-    .chart-scale__label::after {
-        display: inline-flex;
-        margin-left: 5px;
-        width: 10px;
-        height: 14px;
-        border-top: 1px solid #ccc;
-        content: "";
-    }
-} 
+.chart-scale__label::after {
+    display: inline-flex;
+    margin-left: 5px;
+    width: 10px;
+    height: 14px;
+    content: "";
+}
