@@ -17,11 +17,14 @@
 
 .chartBar .chartBar-color {
   border-radius: 5px;
-  width: 30px;
+  /* override inline style from rnd library */
+  width: 30px !important;
   text-align: end;
   cursor: pointer;
   position: absolute;
   bottom: 10px;
+  /* override inline style from rnd library */
+  top: unset !important; 
   left: 0px;
 }
 
