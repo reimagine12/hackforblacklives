@@ -1,5 +1,7 @@
 .chart-scale {
     display: block;
+    position: absolute;
+    top: 0;
 }
 
 .chart-scale__label-container {
