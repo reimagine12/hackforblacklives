@@ -8,9 +8,9 @@ import Intro from './components/Intro/Intro';
 import Chart from './components/Chart/Chart';
 import NonProfits from './components/NonProfits/NonProfits';
 import Footer from './components/Footer/Footer';
+import Tweet from './components/Tweet/Tweet';
 import theme from './theme';
 import './App.css';
-
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
               <NonProfits />
             </Grid>
             <Grid item sm={12} md={3}>
-              [Share]
+              <Tweet />
             </Grid>
           </Grid>
         </Container>
