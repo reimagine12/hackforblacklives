@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+
 import { categories, data, max } from '../../config.js';
+import './Chart.css';
 
 
 export default class Chart extends Component {
@@ -10,23 +12,8 @@ export default class Chart extends Component {
       allocation: 0,
       outcomeNumber: 0,
     },
-    community_garden: {
-      amount: data['community_garden'].initial_amount,
-      allocation: 0,
-      outcomeNumber: 0,
-    },
-    education: {
-      amount: data['education'].initial_amount,
-      allocation: 0,
-      outcomeNumber: 0,
-    },
-    free_transportation: {
-      amount: data['free_transportation'].initial_amount,
-      allocation: 0,
-      outcomeNumber: 0,
-    },
-    head_start: {
-      amount: data['head_start'].initial_amount,
+    small_business_services: {
+      amount: data['small_business_services'].initial_amount,
       allocation: 0,
       outcomeNumber: 0,
     },
@@ -40,13 +27,8 @@ export default class Chart extends Component {
       allocation: 0,
       outcomeNumber: 0,
     },
-    ppe: {
-      amount: data['ppe'].initial_amount,
-      allocation: 0,
-      outcomeNumber: 0,
-    },
-    school_nurses: {
-      amount: data['school_nurses'].initial_amount,
+    health_and_hospitals: {
+      amount: data['health_and_hospitals'].initial_amount,
       allocation: 0,
       outcomeNumber: 0,
     },
@@ -55,13 +37,33 @@ export default class Chart extends Component {
       allocation: 0,
       outcomeNumber: 0,
     },
-    street_resurfacing: {
-      amount: data['street_resurfacing'].initial_amount,
+    infrastructure: {
+      amount: data['infrastructure'].initial_amount,
       allocation: 0,
       outcomeNumber: 0,
     },
-    ventilators: {
-      amount: data['ventilators'].initial_amount,
+    veterans_services: {
+      amount: data['veterans_services'].initial_amount,
+      allocation: 0,
+      outcomeNumber: 0,
+    },
+    arts_and_culture: {
+      amount: data['arts_and_culture'].initial_amount,
+      allocation: 0,
+      outcomeNumber: 0,
+    },
+    fire_and_ems: {
+      amount: data['fire_and_ems'].initial_amount,
+      allocation: 0,
+      outcomeNumber: 0,
+    },
+    housing: {
+      amount: data['housing'].initial_amount,
+      allocation: 0,
+      outcomeNumber: 0,
+    },
+    head_start: {
+      amount: data['head_start'].initial_amount,
       allocation: 0,
       outcomeNumber: 0,
     },
