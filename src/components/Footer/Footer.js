@@ -2,10 +2,10 @@ import React from 'react';
 import Container from '@material-ui/core/Container';
 import './Footer.css'
 
-const Intro = () => (
+const Footer = () => (
     <Container maxWidth="false" className="footer">
         [Footer]
     </Container>
 )
 
-export default Intro;
+export default Footer;
