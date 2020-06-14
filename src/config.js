@@ -49,7 +49,7 @@ export const data = {
     per_unit: 12063.90,
     initial_amount: 1949000,
     image: head_start,
-    impact: 'children in Head Start! Children who participate in Head Start are 12% less likely to live in poverty as adults and 29% less likely to receive public assistance'
+    impact: 'children in Head Start!'
   },
   'homeless_services': {
     id: 4,
