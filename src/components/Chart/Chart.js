@@ -101,15 +101,15 @@ export default class Chart extends Component {
 
   render() {
     return (
-      <div>
+      <div className='chart__container'>
         <div className="chart">
           <div className="chartBars">
             {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
           </div>
           <ChartScale />
         </div>
-        <div className='achievements'>
-          <div style={{width: '100%', maxWidth: 360, backgroundColor: 'white'}}>
+        <div>
+          <div style={{width: '100%', width: 360, backgroundColor: 'white'}}>
             <List component="nav" aria-label="main mailbox folders">
               <ListItem button>
                  Achievements
@@ -119,10 +119,10 @@ export default class Chart extends Component {
               const categoryFromData = this.getDataById(outcomeCategory, data);
               return (
                 <div>
+                  <Divider />
                   <ListItem button>
                      You funded { category.outcomeNumber } { categoryFromData.impact } !
                   </ListItem>
-                  <Divider />
                 </div>
               );
             })}

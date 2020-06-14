@@ -23,11 +23,8 @@ function App() {
             <Grid item sm={12} md={8}>
               <Intro />
             </Grid>
-            <Grid item sm={12} md={9}>
+            <Grid item sm={12} md={12}>
               <Chart />
-            </Grid>
-            <Grid item sm={12} md={3}>
-              [Achievements]
             </Grid>
             <Grid item sm={12} md={9}>
               <NonProfits />
