@@ -9,7 +9,13 @@ const theme = createMuiTheme({
             fontStyle: 'italic',
             fontSize: '3.5rem',
         },
-        h3: {
+        h2: {
+            fontFamily: 'Roboto Mono',
+            fontWeight: '700',
+            fontStyle: 'italic',
+            fontSize: '2.5rem',
+        },
+        h4: {
             fontFamily: 'Roboto Mono',
             fontWeight: '700',
             fontStyle: 'italic',

@@ -3,9 +3,11 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import Chart from './components/Chart/Chart';
-import Intro from './components/Intro/Intro';
 import Header from './components/Header/Header';
+import Intro from './components/Intro/Intro';
+import Chart from './components/Chart/Chart';
+import NonProfits from './components/NonProfits/NonProfits';
+import Footer from './components/Footer/Footer';
 import theme from './theme';
 import './App.css';
 
@@ -26,8 +28,15 @@ function App() {
           <Grid item sm={12} md={3}>
             [Achievements]
           </Grid>
+          <Grid item sm={12} md={9}>
+            <NonProfits />
+          </Grid>
+          <Grid item sm={12} md={3}>
+            [Share]
+          </Grid>
         </Grid>
       </Container>
+      <Footer />
     </ThemeProvider>
   );
 }
