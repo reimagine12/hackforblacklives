@@ -9,6 +9,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import Tweet from '../Tweet/Tweet';
 
 // import housing from './housing.png';
 // import head_start from './head_start.png'; 
@@ -111,7 +113,9 @@ export default class Chart extends Component {
           </div>
           <ChartScale />
         </div>
-        <div style={{position: 'relative', height: '470px'}}>
+        <div style={{position: 'relative', height: '600px', display: 'flex', flexDirection: 'column'}}>
+        <Typography variant="h2">Track the</Typography>
+        <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
           <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
             <List component="nav" aria-label="main mailbox folders">
               <ListItem button>
@@ -133,6 +137,7 @@ export default class Chart extends Component {
             })}
             </List>
           </div>
+          <Tweet category={this.getCategoryById(this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} />
         </div>
       </div>
     )
