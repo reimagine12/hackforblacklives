@@ -121,9 +121,9 @@ export default class Chart extends Component {
                   <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
                     <ListItemIcon>
-                      <img src={data[category.name].image} style={{marginRight: '5px', height: '65px'}}></img>
+                      <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}}></img>
                     </ListItemIcon>
-                     You funded {category.outcomeNumber} {data[category.name].impact}!
+                     You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
                   </ListItem>
                 </div>
               );
