@@ -23,7 +23,7 @@ export default class Chart extends Component {
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
-    console.log('increasing', category);
+    // console.log('increasing', category);
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
 
@@ -58,7 +58,7 @@ export default class Chart extends Component {
   }
 
   decrease = (value, category) => {
-    console.log('decreasing', category);
+    // console.log('decreasing', category);
 
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
@@ -94,7 +94,6 @@ export default class Chart extends Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <div>
         <div className="chart">

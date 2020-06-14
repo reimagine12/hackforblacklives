@@ -1,6 +1,6 @@
 import React from 'react';
 import './ChartBar.css';
-import { data, max, barColors } from '../../config.js';
+import { max, barColors } from '../../config.js';
 
 function ChartBar(props) {
   const { data, increaseBudget, decreaseBudget, order } = props;
@@ -22,14 +22,12 @@ function ChartBar(props) {
   };
 
   const startDrag = e => {
-    console.log("starting ", e.target.id);
     state.dragging = true;
     state.lastMouseY = e.clientY;
     window.onmousemove = updateHeight;
   };
 
   const stopDrag = e => {
-    console.log("stopping ", e.target.id);
     state.dragging = false;
     state.lastMouseY = null;
     window.onmousemove = null;
