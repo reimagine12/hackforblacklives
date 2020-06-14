@@ -10,11 +10,10 @@ import './NonProfits.css'
 
 
 const NonProfits = () => (
-  <Grid container sm={12} md={9} spacing={2}>
+  <Grid container spacing={2}>
     <Grid item sm={12} md={10}>
-      <Typography variant="h2" gutterBottom="true">
-          Make an <br /><Typography variant="h2" color="textSecondary" display="inline">Impact</Typography>
-      </Typography>
+      <Typography variant="h2">Make an </Typography>
+      <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
     </Grid>
     <div className='cards__container'>
     { nonProfits.map(nonProfit => (

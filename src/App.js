@@ -17,17 +17,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
-      <Container maxWidth="false" disableGutters="true" className="container">
+      <Container maxWidth={false} disableGutters={true} className="container">
         <Container className="content">
           <Grid container spacing={2}>
             <Grid item sm={12} md={8}>
               <Intro />
             </Grid>
-            <Grid item sm={12} md={9}>
+            <Grid item sm={12} md={12}>
               <Chart />
-            </Grid>
-            <Grid item sm={12} md={3}>
-              [Achievements]
             </Grid>
             <Grid item sm={12} md={9}>
               <NonProfits />
