@@ -121,7 +121,7 @@ export default class Chart extends Component {
                 <div>
                   <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
-                     You funded { category.outcomeNumber } { categoryFromData.impact } !
+                     You funded {category.outcomeNumber} {categoryFromData.impact}!
                   </ListItem>
                 </div>
               );
