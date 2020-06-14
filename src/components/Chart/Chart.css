@@ -1,5 +1,6 @@
 .chart {
   margin: 1em;
+  margin-top: 0;
   color: #000;
   max-width: 100%;
 }
@@ -12,6 +13,9 @@
   display: flex;
 }
 
+.chart .chartBar-label {
+  transform: rotate(180deg);
+}
 .chart__container {
 	display: flex;
 	padding: 2em;
