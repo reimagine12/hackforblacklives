@@ -2,6 +2,11 @@ import arts_and_culture from './arts_and_culture.png';
 import housing from './housing.png';
 import head_start from './head_start.png';
 import health_and_hospitals from './health_and_hospitals.png'; 
+import small_business_services from './small_business_services.svg';
+import infrastructure from './infrastructure.svg';
+import seniors from './seniors.svg';
+import fire_and_ems from './fire_and_ems.svg';
+import mental_health_services from './mental_health_services.svg';
 
 export const max = 6000000000;
 
@@ -59,7 +64,7 @@ export const data = {
     title: 'Mental Health Services',
     per_unit: 150,
     initial_amount: 578000000,
-    image: housing,
+    image: mental_health_services,
     impact: 'counseling sessions'
   },
   'health_and_hospitals': {
@@ -75,7 +80,7 @@ export const data = {
     title: 'Seniors',
     per_unit: 2.22,
     initial_amount: 385000000,
-    image: housing,
+    image: seniors,
     impact: 'meals delivered to seniors every year',
   },
   'infrastructure': {
@@ -83,7 +88,7 @@ export const data = {
     title: 'Infrastructure',
     per_unit: 149253.73,
     initial_amount: 1100000000,
-    image: housing,
+    image: infrastructure,
     impact: 'miles of road resurfaced'
   },
   'veterans_services': {
@@ -99,7 +104,7 @@ export const data = {
     title: 'Fire and EMS',
     per_unit: 1428571.43,
     initial_amount: 2090000000,
-    image: housing,
+    image: fire_and_ems,
     impact: 'fire trucks',
   },
   'housing': {
