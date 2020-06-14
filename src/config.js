@@ -74,9 +74,9 @@ export const data = {
   'veterans_services': {
     id: 9,
     title: 'Veterans Services',
-    per_unit: null,
+    per_unit: 685,
     initial_amount: 1125000000,
-    impact: null,
+    impact: 'veterans prevented from becoming homeless',
   },
   'fire_and_ems': {
     id: 10,
