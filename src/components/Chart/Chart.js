@@ -108,19 +108,26 @@ export default class Chart extends Component {
           </div>
           <ChartScale />
         </div>
-        <div>
-          <div>OUTCOMES</div>
-          
+        <div className='achievements'>
+          <div style={{width: '100%', maxWidth: 360, backgroundColor: 'white'}}>
+            <List component="nav" aria-label="main mailbox folders">
+              <ListItem button>
+                 Achievements
+              </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
               const categoryFromData = this.getDataById(outcomeCategory, data);
-              console.log('category', categoryFromData)
               return (
-              <div>
-                You funded { category.outcomeNumber } { categoryFromData.impact } !
-              </div>
+                <div>
+                  <ListItem button>
+                     You funded { category.outcomeNumber } { categoryFromData.impact } !
+                  </ListItem>
+                  <Divider />
+                </div>
               );
             })}
+            </List>
+          </div>
         </div>
       </div>
     )
