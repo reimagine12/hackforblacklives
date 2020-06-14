@@ -12,3 +12,8 @@
 	display: flex;
 	padding: 2em;
 }
+
+.chartBar-label {
+font-weight: bold;
+rotate: -180deg;
+}
