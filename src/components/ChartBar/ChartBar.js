@@ -1,5 +1,6 @@
 import React from 'react';
 import './ChartBar.css';
+import { Rnd } from 'react-rnd';
 import { max, barColors } from '../../config.js';
 
 function ChartBar(props) {
@@ -15,39 +16,36 @@ function ChartBar(props) {
 
   const getHeight = () => state.updatedValue/max * 100 + '%';
 
-  const updateHeight = e => {
-    const delta = state.lastMouseY-e.clientY;
+  const updateHeight = (delta) => {
     const domElement = document.getElementById(`chartBar-${data.id}`);
     const dollarsPerPixel = Math.floor(max / domElement.clientHeight);
-    delta > 0 
-      ? increaseBudget(delta + dollarsPerPixel, data.id) 
-      : decreaseBudget(delta * -1 + dollarsPerPixel, data.id);
+    const changeInDollars = Math.abs(delta.height * dollarsPerPixel);
+    if (delta.height > 0) {
+      increaseBudget(changeInDollars, data.id);
+      decreaseBudget(changeInDollars, 1);
+    } else {
+      decreaseBudget(changeInDollars, data.id);
+      increaseBudget(changeInDollars, 1);
+    }
   };
 
-  const startDrag = e => {
-    state.dragging = true;
-    state.lastMouseY = e.clientY;
-    window.onmousemove = updateHeight;
-  };
-
-  const stopDrag = e => {
-    state.dragging = false;
-    state.lastMouseY = null;
-    window.onmousemove = null;
-  };
 
   return (
     <div className='chartBar' id={`chartBar-${data.id}`}>
       <div className='chartBar-label'>{data.label} - ${state.updatedValue.toLocaleString()}</div>
-      <div className='chartBar-color' 
+      <Rnd className='chartBar-color'
         style={{
-          backgroundColor: barColors[order], 
-          height: getHeight()
-          }} 
-        onMouseDown={interactions ? startDrag : null}
-        onMouseUp={interactions ? stopDrag : null}
-        onMouseLeave={state.dragging && interactions !== 0 ? stopDrag : null}
-        />
+          backgroundColor: barColors[order]
+        }} 
+        default={{
+          width: 30,
+          height: 100,
+        }}
+        size={{ width: 30,  height: getHeight() }}
+        onResizeStop={interactions ? (e, direction, ref, delta) => {
+          updateHeight(delta);
+        } : null}
+      />
     </div>
   );
 }

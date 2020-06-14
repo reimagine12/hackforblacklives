@@ -12,9 +12,6 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Tweet from '../Tweet/Tweet';
 
-// import housing from './housing.png';
-// import head_start from './head_start.png'; 
-
 export default class Chart extends Component {
 
   state = {
@@ -69,7 +66,6 @@ export default class Chart extends Component {
   }
 
   decrease = (value, category) => {
-
     const police = this.getCategoryById(1);
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
@@ -109,9 +105,11 @@ export default class Chart extends Component {
       <div className='chart__container'>
         <div className="chart">
           <div className="chartBars">
-            {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+            <ChartScale />
+            <div className="chartBars__wrapper">
+              {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+            </div>
           </div>
-          <ChartScale />
         </div>
         <div style={{position: 'relative', height: '600px', display: 'flex', flexDirection: 'column'}}>
         <Typography variant="h2">Track the</Typography>
@@ -128,9 +126,9 @@ export default class Chart extends Component {
                   <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
                     <ListItemIcon>
-                      <img src={data[category.name].image} style={{marginRight: '5px'}}></img>
+                      <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}}></img>
                     </ListItemIcon>
-                     You funded {category.outcomeNumber} {data[category.name].impact}!
+                     You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
                   </ListItem>
                 </div>
               );
