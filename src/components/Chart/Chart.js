@@ -1,40 +1,114 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Chart.css';
 import ChartBar from './../ChartBar/ChartBar';
+import { data, max } from '../../config.js';
 
-function Chart() {
-  const state = {
-    services: [
-      {id: 'health', label: 'Health', budget: 1000000, color: '#F807B1'},
-      {id: 'homeless', label: 'Homeless Services', budget: 1100000, color: '#C107D9'},
-      {id: 'seniors', label: 'Seniors', budget: 1200000, color: '#9B13F0'},
-      {id: 'education', label: 'Education', budget: 1300000, color: '#4F07D9'},
-      {id: 'ppe', label: 'PPE for essential workers', budget: 1400000, color: '#1907F8'},
-      {id: 'ventilators', label: 'Ventilators', budget: 1500000, color: '#0C31F8'},
-      {id: 'nurses', label: 'School Nurses', budget: 1600000, color: '#0B61D9'},
-      {id: 'transportation', label: 'Transportation', budget: 1700000, color: '#00A6F0'},
-      {id: 'arts', label: 'Arts and Culture', budget: 1800000, color: '#0BCED9'},
-      {id: 'gardens', label: 'Community Gardens', budget: 1900000, color: '#0CF8C3'},
-      {id: 'mentalhealth', label: 'Mental Health', budget: 2000000, color: '#0BD967'},
-      {id: 'headstart', label: 'Head Start', budget: 2100000, color: '#00F028'},
-    ]
+
+export default class Chart extends Component {
+
+  state = {
+    categories: data.map(category => ({
+      id: category.id,
+      label: category.title,
+      amount: category.initial_amount,
+      allocation: 0,
+      outcomeNumber: 0,
+    })).sort(),
+    outcomeCategories: [],
   }
 
-  const increase = (amount, service) => {
-    console.log("increasing ", service, " by ", amount);
+  getCategoryById = (categoryName, dataSet = this.state.categories) => dataSet.find(category => category.id === categoryName);
+
+  increase = (value, category) => {
+    console.log('increasing', category);
+    const police = this.getCategoryById('police');
+    const currentCategory = this.getCategoryById(category);
+
+    if (police.amount === 0) {
+      const allOutcomes = ['police', ...this.state.outcomeCategories]
+      this.setState({
+        outcomeCategories: allOutcomes,
+      });
+      return;
+    }
+    const newAllocation = currentCategory.allocation + value
+    if (newAllocation > max) {
+      return;
+    }
+    const outcomeNumber = Number(Math.floor((newAllocation / this.getCategoryById(category).per_unit)))
+    let newOutcomes = this.state.outcomeCategories;
+    if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
+      newOutcomes = [category, ...this.state.outcomeCategories];
+    } 
+    this.setState({
+      categories: [...this.state.categories.filter(cat => cat.id !== category), { 
+        ...currentCategory,
+        amount: currentCategory.amount + value, 
+        allocation: newAllocation, 
+        outcomeNumber: outcomeNumber,
+      }].sort(),
+      police: { amount: police.amount - value },
+      outcomeCategories: newOutcomes,
+    })
   }
 
-  const decrease = (amount, service) => {
-    console.log("decreasing ", service, " by ", amount);
+  decrease = (value, category) => {
+    console.log('decreasing', category);
+
+    const police = this.getCategoryById('police');
+    const currentCategory = this.getCategoryById(category);
+    const newAmount = currentCategory.amount - value;
+
+    if (newAmount < this.getCategoryById(category, data).initial_amount) {
+      return;
+    }
+
+    const newAllocation = currentCategory.allocation - value;
+    const outcomeNumber = Number(Math.floor((newAllocation / this.getCategoryById(category, data).per_unit)))
+    let newOutcomes = this.state.outcomeCategories;
+
+    if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
+      const index = newOutcomes.indexOf(category);
+      if (index > -1) {
+        newOutcomes.splice(index, 1);
+      }
+    } 
+
+    this.setState({
+      categories: [...this.state.categories.filter(cat => cat.id !== category), { 
+        ...currentCategory,
+        amount: newAmount, 
+        allocation: newAllocation, 
+        outcomeNumber: outcomeNumber,
+      }].sort(),
+      police: { amount: police.amount + value },
+      outcomeCategories: newOutcomes,
+    })
   }
 
-  return (
-    <div className="chart">
-      <div className="chartBars">
-        {state.services.map(service => <ChartBar key={service.id} data={service} increaseBudget={increase} decreaseBudget={decrease} />)}
+  render() {
+    console.log(this.state);
+    return (
+      <div>
+        <div className="chart">
+          <div className="chartBars">
+            {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+          </div>
+        </div>
+
+        <div>
+          <div>OUTCOMES</div>
+            { this.state.outcomeCategories.map(outcomeCategory => {
+              const category = this.getCategoryById(outcomeCategory);
+              const categoryFromData = this.getCategoryById(outcomeCategory, data);
+              return (
+              <div>
+                You funded { category.outcomeNumber } {categoryFromData.impact} !
+              </div>
+              );
+            })}
+        </div>
       </div>
-    </div>
-  );
+    )
+  };
 }
-
-export default Chart;

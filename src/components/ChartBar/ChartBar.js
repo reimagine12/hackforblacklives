@@ -1,22 +1,21 @@
 import React from 'react';
 import './ChartBar.css';
+import { data, max, colors } from '../../config.js';
 
 function ChartBar(props) {
-  const { data, increaseBudget, decreaseBudget } = props;
+  const { data, increaseBudget, decreaseBudget, order } = props;
   const state = {
     dragging: false,
     lastMouseY: null,
-    originalValue: data.budget,
-    updatedValue: data.budget,
-    maxValue: 20000000
+    updatedValue: data.amount
   };
 
-  const getHeight = () => state.updatedValue/state.maxValue * 100 + '%';
+  const getHeight = () => state.updatedValue/max * 100 + '%';
 
   const updateHeight = e => {
     const delta = state.lastMouseY-e.clientY;
     const domElement = document.getElementById(`chartBar-${data.id}`);
-    const dollarsPerPixel = Math.floor(state.maxValue / domElement.clientHeight);
+    const dollarsPerPixel = Math.floor(max / domElement.clientHeight);
     delta > 0 
       ? increaseBudget(delta * dollarsPerPixel, data.id) 
       : decreaseBudget(delta * -1 * dollarsPerPixel, data.id);
@@ -41,7 +40,7 @@ function ChartBar(props) {
       <div className='chartBar-label'>{data.label} - ${state.updatedValue.toLocaleString()}</div>
       <div className='chartBar-color' 
         style={{
-          backgroundColor: data.color, 
+          backgroundColor: colors[order], 
           height: getHeight()
           }} 
         onMouseDown={startDrag}
