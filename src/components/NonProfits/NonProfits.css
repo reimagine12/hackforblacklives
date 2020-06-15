@@ -1,5 +1,6 @@
 .cards__container {
   display: flex;
+  /*background-color: slateblue;*/
 }
 
 @media(max-width: 600px){
@@ -7,3 +8,8 @@
     display: block;
   }
 }
+
+/*div {
+  background-color: crimson;
+
+}*/

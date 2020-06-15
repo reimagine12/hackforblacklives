@@ -1,12 +1,12 @@
 .chartBar {
   margin: 10px;
-  margin-bottom: 0;
+ /* margin: 1em 0 0 0; */
   padding: 10px 0;
   border-radius: 5px;
-  width: 30px;
+  width: 39px;
   text-orientation: mixed;
   writing-mode: vertical-rl;
-  text-align: end;
+  /*text-align: end;*/
   position: relative;
   height: 450px;
 }
@@ -20,13 +20,13 @@
 .chartBar .chartBar-color {
   border-radius: 5px;
   /* override inline style from rnd library */
-  width: 30px !important;
+  width: 50px !important;
   text-align: end;
   cursor: pointer;
   position: absolute;
   bottom: 0px;
   /* override inline style from rnd library */
-  top: unset !important; 
+  top: unset !important;margin-left: 0px;
   left: 0px;
 }
 

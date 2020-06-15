@@ -8,6 +8,9 @@ import seniors from './seniors.svg';
 import fire_and_ems from './fire_and_ems.svg';
 import mental_health_services from './mental_health_services.svg';
 
+import cpr from './logo.jpg';
+
+
 export const max = 6000000000;
 
 export const barColors = [
@@ -141,14 +144,19 @@ export const nonProfits = [
   {
     'name': 'Communities United for Police Reform',
     'path': 'https://www.changethenypd.org/',
+    image: cpr,
+    
   },
   {
     'name': 'Justice Committee',
     'path': 'https://www.justicecommittee.org',
+    
+
   },
   {
     'name': 'Equality for Flatbush',
     'path': 'http://www.equalityforflatbush.org/',
+    
   },
 ]
 
