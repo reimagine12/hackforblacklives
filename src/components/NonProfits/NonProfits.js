@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 
 
+
 import { nonProfits } from '../../config.js';
 import './NonProfits.css'
 
@@ -14,7 +15,7 @@ const NonProfits = () => (
   <Grid container spacing={2}>
     <Grid item sm={12} md={10}>
       <Typography variant="h2">Make an </Typography>
-      <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
+      <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline" width= '18rem'>Impact</Typography>
     </Grid>
     <div className='cards__container'>
     { nonProfits.map(nonProfit => (
@@ -22,6 +23,7 @@ const NonProfits = () => (
         <Card style={{height: '65%', marginRight: '5px'}}>
           <CardContent>
               {nonProfit.name}
+              <img src={nonProfit.image} alt="Logo" />
               
    
           </CardContent>
