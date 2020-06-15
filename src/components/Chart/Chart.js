@@ -117,7 +117,7 @@ export default class Chart extends Component {
           <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
             <List component="nav" aria-label="main mailbox folders">
               <ListItem button>
-                 <b>Achievements</b>
+                 <b>Look what you;ve done!</b>
               </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
@@ -126,7 +126,7 @@ export default class Chart extends Component {
                   <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
                   <ListItem button>
                     <ListItemIcon>
-                      <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}}></img>
+                      <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG"></img>
                     </ListItemIcon>
                      You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
                   </ListItem>

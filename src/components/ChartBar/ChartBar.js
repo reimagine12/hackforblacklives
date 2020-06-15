@@ -32,7 +32,7 @@ function ChartBar(props) {
 
   return (
     <div className='chartBar' id={`chartBar-${data.id}`}>
-      <div className='chartBar-label'>{data.label} - ${state.updatedValue.toLocaleString()}</div>
+      <div className='chartBar-label'>{data.label} <br /> ${state.updatedValue.toLocaleString()}</div>
       <Rnd className='chartBar-color'
         style={{
           backgroundColor: barColors[order]

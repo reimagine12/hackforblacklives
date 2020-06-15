@@ -1,6 +1,7 @@
 .chart {
-  margin: 1em;
-  margin-top: 0;
+  /*margin: 1em;
+  margin-top: 0;*/
+  margin: 1em 1em 1em 0;
   color: #000;
   max-width: 100%;
 }
@@ -18,5 +19,5 @@
 }
 .chart__container {
 	display: flex;
-	padding: 2em;
+	padding: 2em 2em 2em 0;
 }
