@@ -10,7 +10,8 @@ const Intro = () => (
         <Typography variant="h1" gutterBottom={true}> in 2019.</Typography>
         <Typography variant="h4" gutterBottom={true}>How would you reallocate these funds?</Typography>
         <Box mt={2} p={1} border={2} className="intro__instructions">
-        Instructions: Drag the top of the bar on each social services category to increase its budget by pulling funds from the NYPD budget.
+        Instructions: Drag the top of the bar on each social services 
+        category to increase its budget by pulling funds from the NYPD budget.
         </Box>
     </div>
 )

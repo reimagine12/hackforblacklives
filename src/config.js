@@ -13,7 +13,19 @@ import e4f from './E4F-Logo-White-SVG.jpg';
 
 export const max = 6000000000;
 
-export const barColors = ['red', 'orange', 'yellow', 'green', 'crimson', 'cornsilk', 'violet', 'blue', 'pink', 'teal', 'black', 'blue', 'gray'];
+export const barColors = [
+  'black', 
+  '#8F7CEE', 
+  '#F85788', 
+  '#5AECFC', 
+  '#00EC96', 
+  '#8F7CEE', 
+  '#F85788', 
+  '#5AECFC', 
+  '#00EC96', 
+  '#8F7CEE', 
+  '#F85788', 
+  '#5AECFC'];
 
 export const categories = [
   'police',
@@ -147,3 +159,4 @@ export const nonProfits = [
   },
 ]
 
+export const url = "http://www.reimagine12.com";

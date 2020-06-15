@@ -11,7 +11,6 @@ import Footer from './components/Footer/Footer';
 import theme from './theme';
 import './App.css';
 
-
 function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -30,7 +29,6 @@ function App() {
               <NonProfits />
             </Grid>
             <Grid item sm={12} md={3}>
-              [Share]
             </Grid>
           </Grid>
         </Container>
