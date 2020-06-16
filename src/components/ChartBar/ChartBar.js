@@ -21,11 +21,12 @@ function ChartBar(props) {
     const dollarsPerPixel = Math.floor(max / domElement.clientHeight);
     const changeInDollars = Math.abs(delta.height * dollarsPerPixel);
     if (delta.height > 0) {
+      console.log(data.id)
       increaseBudget(changeInDollars, data.id);
-      decreaseBudget(changeInDollars, 1);
+      decreaseBudget(changeInDollars, 0);
     } else {
       decreaseBudget(changeInDollars, data.id);
-      increaseBudget(changeInDollars, 1);
+      increaseBudget(changeInDollars, 0);
     }
   };
 

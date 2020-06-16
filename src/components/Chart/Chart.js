@@ -31,7 +31,8 @@ export default class Chart extends Component {
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
-    const police = this.getCategoryById(1);
+    const police = this.getCategoryById(0);
+    console.log(police)
     const currentCategory = this.getCategoryById(category);
 
     if (police.amount === 0) {
@@ -45,8 +46,10 @@ export default class Chart extends Component {
     if (newAllocation > max) {
       return;
     }
+    console.log('newAllocation', newAllocation)
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor(newAllocation / denom))
+    console.log('outcomeNumber', outcomeNumber);
     let newOutcomes = this.state.outcomeCategories;
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
       newOutcomes = [category, ...this.state.outcomeCategories];
@@ -57,16 +60,19 @@ export default class Chart extends Component {
       allocation: newAllocation, 
       outcomeNumber: outcomeNumber,
     }].sort(this.sortById);
+    console.log('police amount', police.amount - value)
 
     this.setState({
       categories: newCategories,
       police: { amount: police.amount - value },
       outcomeCategories: newOutcomes,
     })
+
+    console.log('police amount after', police.amount)
   }
 
   decrease = (value, category) => {
-    const police = this.getCategoryById(1);
+    const police = this.getCategoryById(0);
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
 
@@ -75,10 +81,11 @@ export default class Chart extends Component {
     }
 
     const newAllocation = currentCategory.allocation - value;
+    console.log(newAllocation)
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor((newAllocation / denom)))
     let newOutcomes = this.state.outcomeCategories;
-
+    console.log(outcomeNumber)
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
       const index = newOutcomes.indexOf(category);
       if (index > -1) {
@@ -117,7 +124,7 @@ export default class Chart extends Component {
           <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
             <List component="nav" aria-label="main mailbox folders">
               <ListItem button>
-                 <b>Look what you;ve done!</b>
+                 <b>Look what you've done!</b>
               </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);
