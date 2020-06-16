@@ -46,7 +46,9 @@ export default class Chart extends Component {
       });
       return;
     }
-    const newAllocation = currentCategory.allocation + value
+    const newAllocation = currentCategory.amount + value
+    console.log('current cat allocation', currentCategory.allocation, 'value', value, 'newAllocation', newAllocation, 'curCat', currentCategory)
+
     if (newAllocation > max) {
       return;
     }
