@@ -26,13 +26,17 @@ export default class Chart extends Component {
     outcomeCategories: [],
   }
 
-  getCategoryById = (categoryName) => this.state.categories.find(category => category.id === categoryName);
-  getDataById = (categoryName) => data[categories[categoryName]];
+  getCategoryById = (categoryName) => {
+    return this.state.categories.find(category => category.id === categoryName)
+  };
+  getDataById = (categoryName) => {
+
+    return data[categories[categoryName]]
+  };
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
     const police = this.getCategoryById(0);
-    console.log(police)
     const currentCategory = this.getCategoryById(category);
 
     if (police.amount === 0) {
@@ -46,10 +50,8 @@ export default class Chart extends Component {
     if (newAllocation > max) {
       return;
     }
-    console.log('newAllocation', newAllocation)
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor(newAllocation / denom))
-    console.log('outcomeNumber', outcomeNumber);
     let newOutcomes = this.state.outcomeCategories;
     if (outcomeNumber > 0 && !this.state.outcomeCategories.includes(category)) {
       newOutcomes = [category, ...this.state.outcomeCategories];
@@ -60,15 +62,12 @@ export default class Chart extends Component {
       allocation: newAllocation, 
       outcomeNumber: outcomeNumber,
     }].sort(this.sortById);
-    console.log('police amount', police.amount - value)
 
     this.setState({
       categories: newCategories,
       police: { amount: police.amount - value },
       outcomeCategories: newOutcomes,
-    })
-
-    console.log('police amount after', police.amount)
+    });
   }
 
   decrease = (value, category) => {
@@ -76,16 +75,14 @@ export default class Chart extends Component {
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
 
-    if (newAmount < this.getDataById(category).initial_amount) {
+    if (newAmount < this.getDataById(category).initial_amount && category !== 0) {
       return;
     }
 
     const newAllocation = currentCategory.allocation - value;
-    console.log(newAllocation)
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor((newAllocation / denom)))
     let newOutcomes = this.state.outcomeCategories;
-    console.log(outcomeNumber)
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
       const index = newOutcomes.indexOf(category);
       if (index > -1) {
@@ -104,7 +101,7 @@ export default class Chart extends Component {
       categories: newCategories,
       police: { amount: police.amount + value },
       outcomeCategories: newOutcomes,
-    })
+    });
   }
 
   render() {
