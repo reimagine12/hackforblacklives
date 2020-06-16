@@ -39,15 +39,19 @@ export default class Chart extends Component {
     const police = this.getCategoryById(0);
     const currentCategory = this.getCategoryById(category);
 
-    if (police.amount === 0) {
-      const allOutcomes = ['police', ...this.state.outcomeCategories]
-      this.setState({
-        outcomeCategories: allOutcomes,
-      });
-      return;
+    if (currentCategory.id !== 0) {
+      if (police.amount === 0) {
+        return;
+      }
+
+      if (police.amount <= 60000000) { 
+        // amount where the values become too small to adjust with the bars. set police amount to zero.
+        value = value + police.amount;
+        police.amount = 0;
+      }
     }
+
     const newAllocation = currentCategory.amount + value
-    console.log('current cat allocation', currentCategory.allocation, 'value', value, 'newAllocation', newAllocation, 'curCat', currentCategory)
 
     if (newAllocation > max) {
       return;
@@ -77,8 +81,10 @@ export default class Chart extends Component {
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
 
-    if (newAmount < this.getDataById(category).initial_amount && category !== 0) {
-      return;
+    if (category !== 0 || newAmount < 0) {
+      if (newAmount < this.getDataById(category).initial_amount) {
+        return;
+      }
     }
 
     const newAllocation = currentCategory.allocation - value;
