@@ -20,17 +20,17 @@ const NonProfits = () => (
     <div className='cards__container'>
     { nonProfits.map(nonProfit => (
       <Grid item sm={12} md={4} style={{padding: '10px', textAlign: 'center'}}>
-        <Card style={{height: '65%', marginRight: '5px'}}>
+        <Card style={{height: '85%', marginRight: '5px', backgroundColor: "red"}}>
           <CardContent>
-              {nonProfit.name}
-              <img src={nonProfit.image} alt="Logo" />
+              {nonProfit.name}<br/>
+              <img src={nonProfit.image} alt="Logo" style={{width:"100px"}} />
               
    
           </CardContent>
         </Card>
         <Button
           href={nonProfit.path}
-          style={{backgroundColor:'white', marginTop: '10px'}}
+          style={{backgroundColor: 'white', marginTop: '10px'}}
           variant="contained"
           size="small">
           Visit Website
