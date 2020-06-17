@@ -26,22 +26,33 @@ export default class Chart extends Component {
     outcomeCategories: [],
   }
 
-  getCategoryById = (categoryName) => this.state.categories.find(category => category.id === categoryName);
-  getDataById = (categoryName) => data[categories[categoryName]];
+  getCategoryById = (categoryName) => {
+    return this.state.categories.find(category => category.id === categoryName)
+  };
+  getDataById = (categoryName) => {
+
+    return data[categories[categoryName]]
+  };
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
-    const police = this.getCategoryById(1);
+    const police = this.getCategoryById(0);
     const currentCategory = this.getCategoryById(category);
 
-    if (police.amount === 0) {
-      const allOutcomes = ['police', ...this.state.outcomeCategories]
-      this.setState({
-        outcomeCategories: allOutcomes,
-      });
-      return;
+    if (currentCategory.id !== 0) {
+      if (police.amount === 0) {
+        return;
+      }
+
+      if (police.amount <= 60000000) { 
+        // amount where the values become too small to adjust with the bars. set police amount to zero.
+        value = value + police.amount;
+        police.amount = 0;
+      }
     }
-    const newAllocation = currentCategory.allocation + value
+
+    const newAllocation = currentCategory.amount + value
+
     if (newAllocation > max) {
       return;
     }
@@ -62,23 +73,24 @@ export default class Chart extends Component {
       categories: newCategories,
       police: { amount: police.amount - value },
       outcomeCategories: newOutcomes,
-    })
+    });
   }
 
   decrease = (value, category) => {
-    const police = this.getCategoryById(1);
+    const police = this.getCategoryById(0);
     const currentCategory = this.getCategoryById(category);
     const newAmount = currentCategory.amount - value;
 
-    if (newAmount < this.getDataById(category).initial_amount) {
-      return;
+    if (category !== 0 || newAmount < 0) {
+      if (newAmount < this.getDataById(category).initial_amount) {
+        return;
+      }
     }
 
     const newAllocation = currentCategory.allocation - value;
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor((newAllocation / denom)))
     let newOutcomes = this.state.outcomeCategories;
-
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
       const index = newOutcomes.indexOf(category);
       if (index > -1) {
@@ -97,7 +109,7 @@ export default class Chart extends Component {
       categories: newCategories,
       police: { amount: police.amount + value },
       outcomeCategories: newOutcomes,
-    })
+    });
   }
 
   render() {
@@ -117,7 +129,7 @@ export default class Chart extends Component {
           <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
             <List component="nav" aria-label="main mailbox folders">
               <ListItem button>
-                 <b>Look what you;ve done!</b>
+                 <b>Look what you've done!</b>
               </ListItem>
             { this.state.outcomeCategories.map(outcomeCategory => {
               const category = this.getCategoryById(outcomeCategory);

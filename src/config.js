@@ -44,14 +44,14 @@ export const categories = [
 
 export const data = {
   'police': {
-    id: 1,
+    id: 0,
     title: 'Police',
     initial_amount: 5570000000,
     image: housing,
     impact: 'all the things that make people healthier and safer. And you defunded the police! Great job',
   },
   'arts_and_culture': {
-    id: 2,
+    id: 1,
     title: 'Arts and Culture',
     per_unit: 12,
     initial_amount: 137000000,
@@ -59,7 +59,7 @@ export const data = {
     impact: 'visits children can take in their school groups to the metropolitan museum of art'
   },
   'head_start': {
-    id: 3,
+    id: 2,
     title: 'Head Start',
     per_unit: 12063.90,
     initial_amount: 1949000,
@@ -67,7 +67,7 @@ export const data = {
     impact: 'children in Head Start!'
   },
   'homeless_services': {
-    id: 4,
+    id: 3,
     title: 'Homeless Services',
     per_unit: 46948.36,
     initial_amount: 2070000000,
@@ -75,7 +75,7 @@ export const data = {
     impact: 'homeless family shelter units for a year',
   },
   'mental_health': {
-    id: 5,
+    id: 4,
     title: 'Mental Health Services',
     per_unit: 150,
     initial_amount: 578000000,
@@ -83,7 +83,7 @@ export const data = {
     impact: 'counseling sessions'
   },
   'health_and_hospitals': {
-    id: 6,
+    id: 5,
     title: 'Health and Hospitals',
     per_unit: 5.75,
     initial_amount: 773000000,
@@ -91,7 +91,7 @@ export const data = {
     impact: 'N95 masks for hospital staff'
   },
   'seniors': {
-    id: 7,
+    id: 6,
     title: 'Seniors',
     per_unit: 2.22,
     initial_amount: 385000000,
@@ -99,7 +99,7 @@ export const data = {
     impact: 'meals delivered to seniors every year',
   },
   'infrastructure': {
-    id: 8,
+    id: 7,
     title: 'Infrastructure',
     per_unit: 149253.73,
     initial_amount: 1100000000,
@@ -107,7 +107,7 @@ export const data = {
     impact: 'miles of road resurfaced'
   },
   'veterans_services': {
-    id: 9,
+    id: 8,
     title: 'Veterans Services',
     per_unit: 685,
     initial_amount: 1125000000,
@@ -115,7 +115,7 @@ export const data = {
     impact: 'veterans prevented from becoming homeless',
   },
   'fire_and_ems': {
-    id: 10,
+    id: 9,
     title: 'Fire and EMS',
     per_unit: 1428571.43,
     initial_amount: 2090000000,
@@ -123,7 +123,7 @@ export const data = {
     impact: 'fire trucks',
   },
   'housing': {
-    id: 11,
+    id: 10,
     title: 'Housing',
     per_unit: 2107,
     initial_amount: 262000000,
@@ -131,7 +131,7 @@ export const data = {
     impact: '2-bedroom apartments with section 8 housing assistance',
   },
   'small_business_services': {
-    id: 12,
+    id: 11,
     title: 'Small Business Services',
     per_unit: 75000,
     initial_amount: 160800000,

@@ -22,10 +22,10 @@ function ChartBar(props) {
     const changeInDollars = Math.abs(delta.height * dollarsPerPixel);
     if (delta.height > 0) {
       increaseBudget(changeInDollars, data.id);
-      decreaseBudget(changeInDollars, 1);
+      decreaseBudget(changeInDollars, 0);
     } else {
       decreaseBudget(changeInDollars, data.id);
-      increaseBudget(changeInDollars, 1);
+      increaseBudget(changeInDollars, 0);
     }
   };
 
