@@ -9,6 +9,8 @@ import fire_and_ems from './fire_and_ems.svg';
 import mental_health_services from './mental_health_services.svg';
 
 import cpr from './logo.jpg';
+import jc from './JCLOGO.jpg';
+import e4f from './E4F-Logo-White-SVG.jpg';
 
 
 export const max = 6000000000;
@@ -145,18 +147,22 @@ export const nonProfits = [
     'name': 'Communities United for Police Reform',
     'path': 'https://www.changethenypd.org/',
     image: cpr,
+    color: 'red',
     
   },
   {
     'name': 'Justice Committee',
     'path': 'https://www.justicecommittee.org',
+    image: jc,
+    'color': 'yellow',
     
 
   },
   {
     'name': 'Equality for Flatbush',
     'path': 'http://www.equalityforflatbush.org/',
-    
+    image: e4f,
+    'color': '#000000',
   },
 ]
 

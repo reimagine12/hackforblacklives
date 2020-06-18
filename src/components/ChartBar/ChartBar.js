@@ -29,10 +29,20 @@ function ChartBar(props) {
     }
   };
 
+  function millBill() {
+    var str = state.updatedValue.toString();
+    var n = str.length;
+    
+    if (n <= 9 && n < 11) {
+    return 'Million';
+  } else { 
+    return 'Billion';
+  }
+  }
 
   return (
     <div className='chartBar' id={`chartBar-${data.id}`}>
-      <div className='chartBar-label'>{data.label} <br /> ${state.updatedValue.toLocaleString()}</div>
+      <div className='chartBar-label'>{data.label} <br /> ${state.updatedValue.toLocaleString()} {millBill()}</div>
       <Rnd className='chartBar-color'
         style={{
           backgroundColor: barColors[order]
