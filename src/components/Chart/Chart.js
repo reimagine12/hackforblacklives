@@ -11,6 +11,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 import Tweet from '../Tweet/Tweet';
+import Track from '../Track/Track';
 
 export default class Chart extends Component {
 
@@ -114,6 +115,7 @@ export default class Chart extends Component {
 
   render() {
     return (
+      <React.Fragment>
       <div className='chart__container'>
         <div className="chart">
           <div className="chartBars">
@@ -123,33 +125,36 @@ export default class Chart extends Component {
             </div>
           </div>
         </div>
-        <div style={{position: 'relative', height: '600px', display: 'flex', flexDirection: 'column'}}>
-        <Typography variant="h2">Track the</Typography>
-        <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
-          <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
-            <List component="nav" aria-label="main mailbox folders">
-              <ListItem button>
-                 <b>Look what you've done!</b>
-              </ListItem>
-            { this.state.outcomeCategories.map(outcomeCategory => {
-              const category = this.getCategoryById(outcomeCategory);
-              return (
-                <div>
-                  <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
-                  <ListItem button>
-                    <ListItemIcon>
-                      <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG"></img>
-                    </ListItemIcon>
-                     You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
-                  </ListItem>
-                </div>
-              );
-            })}
-            </List>
-          </div>
-          <Tweet category={this.getCategoryById(this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} />
-        </div>
       </div>
+        {/* <div className="chart__track" style={{position: 'relative', height: '600px', display: 'flex', flexDirection: 'column'}}>
+          <Typography variant="h2">Track the</Typography>
+          <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
+            <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
+              <List component="nav" aria-label="main mailbox folders">
+                <ListItem button>
+                  <b>Look what you've done!</b>
+                </ListItem>
+              { this.state.outcomeCategories.map(outcomeCategory => {
+                const category = this.getCategoryById(outcomeCategory);
+                return (
+                  <div>
+                    <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
+                    <ListItem button>
+                      <ListItemIcon>
+                        <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG"></img>
+                      </ListItemIcon>
+                      You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
+                    </ListItem>
+                  </div>
+                );
+              })}
+              </List>
+            </div>
+        </div> */}
+        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} />
+          <Tweet category={this.getCategoryById(this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} />
+
+      </React.Fragment>
     )
   }
 }
