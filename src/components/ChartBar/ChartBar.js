@@ -30,7 +30,7 @@ function ChartBar(props) {
   };
 
   function millBill() {
-    var str = state.updatedValue.toLocaleString();
+    var str = state.updatedValue.toString();
     var n = str.length;
     
     if (n <= 9 && n < 11) {
