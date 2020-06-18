@@ -58,15 +58,17 @@ export const data = {
     per_unit: 12,
     initial_amount: 137000000,
     image: arts_and_culture,
-    impact: 'visits children can take in their school groups to the metropolitan museum of art'
+    sentence: 'You helped',
+    impact: 'students take a class trip to the Metropolitan Museum of Art'
   },
   'head_start': {
     id: 2,
-    title: 'Head Start',
+    title: 'Education',
     per_unit: 12063.90,
     initial_amount: 1949000,
     image: head_start,
-    impact: 'children in Head Start!'
+    sentence: 'You created',
+    impact: 'spots in the city\'s Head Start Program'
   },
   'homeless_services': {
     id: 3,
@@ -74,6 +76,7 @@ export const data = {
     per_unit: 46948.36,
     initial_amount: 2070000000,
     image: housing,
+    sentence: 'You created',
     impact: 'homeless family shelter units for a year',
   },
   'mental_health': {
@@ -82,23 +85,26 @@ export const data = {
     per_unit: 150,
     initial_amount: 578000000,
     image: mental_health_services,
-    impact: 'counseling sessions'
+    sentence: 'You covered the cost of ',
+    impact: 'counseling sessions for low-income New Yorkers'
   },
   'health_and_hospitals': {
     id: 5,
-    title: 'Health and Hospitals',
+    title: 'Healthcare',
     per_unit: 5.75,
     initial_amount: 773000000,
     image: health_and_hospitals,
+    sentence: 'You secured',
     impact: 'N95 masks for hospital staff'
   },
   'seniors': {
     id: 6,
-    title: 'Seniors',
+    title: 'Seniors Services',
     per_unit: 2.22,
     initial_amount: 385000000,
     image: seniors,
-    impact: 'meals delivered to seniors every year',
+    sentence: 'You got',
+    impact: 'meals delivered to seniors this year',
   },
   'infrastructure': {
     id: 7,
@@ -106,7 +112,8 @@ export const data = {
     per_unit: 149253.73,
     initial_amount: 1100000000,
     image: infrastructure,
-    impact: 'miles of road resurfaced'
+    sentence: 'You repaved',
+    impact: 'miles of road'
   },
   'veterans_services': {
     id: 8,
@@ -114,7 +121,8 @@ export const data = {
     per_unit: 685,
     initial_amount: 1125000000,
     image: housing,
-    impact: 'veterans prevented from becoming homeless',
+    sentence: 'You prevented',
+    impact: 'veteran from becoming homeless this year',
   },
   'fire_and_ems': {
     id: 9,
@@ -122,6 +130,7 @@ export const data = {
     per_unit: 1428571.43,
     initial_amount: 2090000000,
     image: fire_and_ems,
+    sentence: 'You bought',
     impact: 'fire trucks',
   },
   'housing': {
@@ -130,15 +139,17 @@ export const data = {
     per_unit: 2107,
     initial_amount: 262000000,
     image: housing,
-    impact: '2-bedroom apartments with section 8 housing assistance',
+    sentence: 'You created',
+    impact: '2-bedroom apartment voucher for section 8 housing assistance',
   },
   'small_business_services': {
     id: 11,
-    title: 'Small Business Services',
+    title: 'Economic Development',
     per_unit: 75000,
     initial_amount: 160800000,
     image: small_business_services,
-    impact: 'zero interest loans for small businesses',
+    sentence: 'You provided',
+    impact: 'zero interest loans for local small businesses',
   }
 };
 

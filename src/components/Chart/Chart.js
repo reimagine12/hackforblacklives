@@ -140,7 +140,7 @@ export default class Chart extends Component {
                     <ListItemIcon>
                       <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG"></img>
                     </ListItemIcon>
-                     You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
+                     {data[category.name].sentence} {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
                   </ListItem>
                 </div>
               );
