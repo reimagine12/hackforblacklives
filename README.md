@@ -12,12 +12,12 @@
 - Provide links to related local organizations so that users can get involved or donate
 
 ## Resources  
-https://data.cityofnewyork.us/City-Government/Expense-Budget/mwzb-yiwb
-https://catalog.data.gov/group/ccc6c266-eee8-44bd-89aa-7cd8c4c6bf46?organization_type=City+Government&tags=budget
+- https://data.cityofnewyork.us/City-Government/Expense-Budget/mwzb-yiwb
+- https://catalog.data.gov/group/ccc6c266-eee8-44bd-89aa-7cd8c4c6bf46?organization_type=City+Government&tags=budget
 
 ## Stretch Goals
 
-- Notify users when important budget decisions are being made around the services they indicated they are interested in funding: Twilio integration - 
+- Notify users when important budget decisions are being made around the services they indicated they are interested in funding (Twilio integration)
 - Notify users to contact their local lawmakers when budgets are being drawn up around allocating to the services they noted they care about
 - Currently, data set reflects the NYC budget. We would like to expand this to other cities: Boston, Philadephia
 
