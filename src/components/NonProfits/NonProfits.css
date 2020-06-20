@@ -1,15 +1,16 @@
-.cards__container {
+.nonprofit__title {
   display: flex;
-  /*background-color: slateblue;*/
 }
 
-@media(max-width: 600px){
+.cards__container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1em;
+}
+
+@media(max-width: 768px){
   .cards__container {
     display: block;
   }
 }
-
-/*div {
-  background-color: crimson;
-
-}*/

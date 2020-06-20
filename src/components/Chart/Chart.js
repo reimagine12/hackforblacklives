@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import ChartScale from '../ChartScale/ChartScale'
 import { categories, data, max } from '../../config.js';
-import './Chart.css';
 import ChartBar from './../ChartBar/ChartBar';
-import { makeStyles } from '@material-ui/core/styles';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import Typography from '@material-ui/core/Typography';
-import Tweet from '../Tweet/Tweet';
+import Track from '../Track/Track';
+import './Chart.css';
+
 
 export default class Chart extends Component {
 
@@ -26,18 +20,13 @@ export default class Chart extends Component {
     outcomeCategories: [],
   }
 
-  getCategoryById = (categoryName) => {
-    return this.state.categories.find(category => category.id === categoryName)
-  };
-  getDataById = (categoryName) => {
-
-    return data[categories[categoryName]]
-  };
+  getDataById = (categoryName) => data[categories[categoryName]];
+  getCategoryById = (categories, id) => categories.find(category => category.id === id);
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
-    const police = this.getCategoryById(0);
-    const currentCategory = this.getCategoryById(category);
+    const police = this.getCategoryById(this.state.categories, 0);
+    const currentCategory = this.getCategoryById(this.state.categories, category);
 
     if (currentCategory.id !== 0) {
       if (police.amount === 0) {
@@ -77,8 +66,8 @@ export default class Chart extends Component {
   }
 
   decrease = (value, category) => {
-    const police = this.getCategoryById(0);
-    const currentCategory = this.getCategoryById(category);
+    const police = this.getCategoryById(this.state.categories, 0);
+    const currentCategory = this.getCategoryById(this.state.categories, category);
     const newAmount = currentCategory.amount - value;
 
     if (category !== 0 || newAmount < 0) {
@@ -114,42 +103,19 @@ export default class Chart extends Component {
 
   render() {
     return (
-      <div className='chart__container'>
-        <div className="chart">
-          <div className="chartBars">
-            <ChartScale />
-            <div className="chartBars__wrapper">
-              {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+      <React.Fragment>
+        <div className='chart__container'>
+          <div className="chart">
+            <div className="chartBars">
+              <ChartScale />
+              <div className="chartBars__wrapper">
+                {this.state.categories.map((service, i) => <ChartBar key={i} order={i} data={service} increaseBudget={this.increase} decreaseBudget={this.decrease} />)}
+              </div>
             </div>
           </div>
         </div>
-        <div style={{position: 'relative', height: '600px', display: 'flex', flexDirection: 'column'}}>
-        <Typography variant="h2">Track the</Typography>
-        <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
-          <div style={{width: '100%', width: 360, border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
-            <List component="nav" aria-label="main mailbox folders">
-              <ListItem button>
-                 <b>Look what you've done!</b>
-              </ListItem>
-            { this.state.outcomeCategories.map(outcomeCategory => {
-              const category = this.getCategoryById(outcomeCategory);
-              return (
-                <div>
-                  <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
-                  <ListItem button>
-                    <ListItemIcon>
-                      <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG"></img>
-                    </ListItemIcon>
-                     {data[category.name].sentence} {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
-                  </ListItem>
-                </div>
-              );
-            })}
-            </List>
-          </div>
-          <Tweet category={this.getCategoryById(this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} />
-        </div>
-      </div>
+        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} />
+      </React.Fragment>
     )
   }
 }

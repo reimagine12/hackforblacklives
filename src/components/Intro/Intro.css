@@ -1,3 +1,7 @@
+.intro__title {
+    display: -webkit-inline-box;
+}
+
 .intro__instructions {
     background-color: #fff;
 }
