@@ -1,60 +1,46 @@
 import React from 'react';
+import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import { data } from '../../config.js';
 import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
-
-// import './Track.css';
+import Tweet from '../Tweet/Tweet';
+import { data } from '../../config.js';
+import './Track.css';
 
 const Track = (props) => {
     const { outcomes, categories, getCategoryById } = props;
 
+    const ImpactCard = withStyles({
+        root: {
+            display:'flex',
+            alignItems: 'center',
+            boxShadow: 'none',
+            border: '2px solid #000000',
+            height: '96px',
+            margin: '3px'
+        }
+    })(Card);
+
     return (
-        // <div className="chart__track" style={{position: 'relative', height: '600px', display: 'flex', flexDirection: 'column'}}>
-        //   <Typography variant="h2">Track the</Typography>
-        //   <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
-        //     <div style={{width: '100%', border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
-        //       <List>
-        //         <ListSubheader color="inherit">
-        //           <b>Look what you've done!</b>
-        //         </ListSubheader>
-        //       { outcomes.map(outcomeCategory => {
-        //         const category = getCategoryById(categories, outcomeCategory);
-        //         return (
-        //           <div>
-        //             <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
-        //             <ListItem>
-        //               <ListItemIcon>
-        //                 <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG"></img>
-        //               </ListItemIcon>
-        //               You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
-        //             </ListItem>
-        //           </div>
-        //         );
-        //       })}
-        //       </List>
-        //     </div>
-        // </div>
-        <Grid container>
-            <Grid item sm={12} m={12}>
-                <Typography variant="h2">Track the</Typography>
-                <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
+        <React.Fragment>
+            <Typography variant="h2">Track the</Typography>
+            <Typography variant="h2" gutterBottom={true} color="textSecondary">Impact</Typography>
+            <Grid container className="card__container">
+                { outcomes.length === 0 ? <Grid item sm={12} md={12} className="card__placeholder">Your impact here.</Grid> :
+                    outcomes.map(outcomeCategory => {
+                        const category = getCategoryById(categories, outcomeCategory);
+                        return (
+                            <Grid item sm={12} md={3} style={{flexGrow: '1'}}>
+                                <ImpactCard>
+                                    <img src={data[category.name].image} className="card__image" alt="IMG" />
+                                    <p className="card__text">You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!</p>
+                                </ImpactCard>
+                            </Grid>
+                        );
+                    })}
             </Grid>
-            
-            { outcomes.length === 0 ? <Grid item sm={12} m={12} style={{textAlign: 'center', fontStyle: 'italic'}}>Your impact here.</Grid> :
-                outcomes.map(outcomeCategory => {
-                    const category = getCategoryById(categories, outcomeCategory);
-                    return (
-                        <Grid item sm={12} md={3}>
-                            <Card>
-                                <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG" />
-                                You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!
-                            </Card>
-                        </Grid>
-                    );
-                    }
-                )}
-      </Grid>
+            <Tweet category={getCategoryById(categories, outcomes.length || outcomes[0])} />
+      </React.Fragment>
     )
 }
 

@@ -1,0 +1,18 @@
+.card__container {
+    max-height: 304px;
+    overflow-y: scroll;
+}
+
+.card__placeholder {
+    text-align: center; 
+    font-style: italic;
+}
+
+.card__text {
+ margin-right: 5px;
+}
+
+.card__image {
+    margin: 10px;
+    height: 40px;
+}

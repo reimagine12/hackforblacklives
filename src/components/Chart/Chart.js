@@ -117,7 +117,7 @@ export default class Chart extends Component {
           </div>
         </div>
         <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} />
-        <Tweet category={getCategoryById(this.state.categories, this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} />
+        {/* <Tweet category={getCategoryById(this.state.categories, this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} /> */}
       </React.Fragment>
     )
   }
