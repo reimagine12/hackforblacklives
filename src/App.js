@@ -25,10 +25,8 @@ function App() {
             <Grid item sm={12} md={12}>
               <Chart />
             </Grid>
-            <Grid item sm={12} md={9}>
+            <Grid item sm={12} md={12}>
               <NonProfits />
-            </Grid>
-            <Grid item sm={12} md={3}>
             </Grid>
           </Grid>
         </Container>

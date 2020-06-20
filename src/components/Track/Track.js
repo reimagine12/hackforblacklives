@@ -1,12 +1,12 @@
 import React from 'react';
-import { data } from '../../config.js';
-import getCategoryById from '../../util/chartUtil.js'
-// import './Track.css';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import { data } from '../../config.js';
+import getCategoryById from '../../util/chartUtil.js'
+// import './Track.css';
 
 const Track = (props) => {
     const { outcomes, categories } = props;
@@ -16,8 +16,8 @@ const Track = (props) => {
           <Typography variant="h2">Track the</Typography>
           <Typography variant="h2" gutterBottom={true} color="textSecondary" display="inline">Impact</Typography>
             <div style={{width: '100%', border: '10px solid rgba(255, 255, 255, 0.5)', overflow: 'auto', maxHeight: '100%'}}>
-              <List component="nav" aria-label="main mailbox folders">
-                <ListItem button>
+              <List>
+                <ListItem>
                   <b>Look what you've done!</b>
                 </ListItem>
               { outcomes.map(outcomeCategory => {
@@ -25,7 +25,7 @@ const Track = (props) => {
                 return (
                   <div>
                     <Divider style={{border: '2px solid rgba(255, 255, 255, 0.5)'}}/>
-                    <ListItem button>
+                    <ListItem>
                       <ListItemIcon>
                         <img src={data[category.name].image} style={{marginRight: '15px', height: '65px'}} alt="IMG"></img>
                       </ListItemIcon>
