@@ -1,3 +1,7 @@
-.icon {
+.tweet__container {
+    justify-content: flex-end;
+}
+
+.tweet__icon {
     margin-right: 10px;
 }

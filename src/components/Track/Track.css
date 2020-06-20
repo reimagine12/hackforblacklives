@@ -1,0 +1,22 @@
+.card__container {
+    margin-top: 1em;
+    max-height: 304px;
+    overflow-y: scroll;
+}
+
+.card__placeholder {
+    text-align: center; 
+    font-style: italic;
+    background: #ffd77b;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.card__text {
+ margin-right: 5px;
+}
+
+.card__image {
+    margin: 12px;
+    height: 40px;
+}
