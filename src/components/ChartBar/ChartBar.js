@@ -29,6 +29,13 @@ function ChartBar(props) {
     }
   };
 
+  // Converts number to simpler decimal
+  function simpleNum(){
+    var num = state.updatedValue * .00000001
+    return num.toFixed(1)
+  }
+
+  // Adds Million or Billion depedning on the numbers value
   function millBill() {
     var str = state.updatedValue.toString();
     var n = str.length;
@@ -42,7 +49,7 @@ function ChartBar(props) {
 
   return (
     <div className='chartBar' id={`chartBar-${data.id}`}>
-      <div className='chartBar-label'>{data.label} <br /> ${state.updatedValue.toLocaleString()} {millBill()}</div>
+      <div className='chartBar-label'>{data.label} <br /> ${simpleNum()} {millBill()}</div>
       <Rnd className='chartBar-color'
         style={{
           backgroundColor: barColors[order]
@@ -61,3 +68,9 @@ function ChartBar(props) {
 }
 
 export default ChartBar;
+
+//When I hover over the bar, show the full number amount
+//onmouseover()
+//Full number = state.updatedValue.toLocaleString()
+
+// document.getElementByC("demo").onmouseover
