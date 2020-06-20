@@ -22,10 +22,8 @@ export default class Chart extends Component {
     outcomeCategories: [],
   }
 
-  getDataById = (categoryName) => {
-
-    return data[categories[categoryName]]
-  };
+  getDataById = (categoryName) => data[categories[categoryName]];
+  getCategoryById = (categories, id) => categories.find(category => category.id === id);
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
@@ -118,7 +116,7 @@ export default class Chart extends Component {
             </div>
           </div>
         </div>
-        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} />
+        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} />
         <Tweet category={getCategoryById(this.state.categories, this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} />
       </React.Fragment>
     )
