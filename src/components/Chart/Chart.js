@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import ChartScale from '../ChartScale/ChartScale'
 import { categories, data, max } from '../../config.js';
-import getCategoryById from '../../util/chartUtil.js'
 import ChartBar from './../ChartBar/ChartBar';
-import Tweet from '../Tweet/Tweet';
 import Track from '../Track/Track';
 import './Chart.css';
 
@@ -27,8 +25,8 @@ export default class Chart extends Component {
   sortById = (a, b) => a.id - b.id;
   
   increase = (value, category) => {
-    const police = getCategoryById(this.state.categories, 0);
-    const currentCategory = getCategoryById(this.state.categories, category);
+    const police = this.getCategoryById(this.state.categories, 0);
+    const currentCategory = this.getCategoryById(this.state.categories, category);
 
     if (currentCategory.id !== 0) {
       if (police.amount === 0) {
@@ -68,8 +66,8 @@ export default class Chart extends Component {
   }
 
   decrease = (value, category) => {
-    const police = getCategoryById(this.state.categories, 0);
-    const currentCategory = getCategoryById(this.state.categories, category);
+    const police = this.getCategoryById(this.state.categories, 0);
+    const currentCategory = this.getCategoryById(this.state.categories, category);
     const newAmount = currentCategory.amount - value;
 
     if (category !== 0 || newAmount < 0) {
@@ -117,7 +115,6 @@ export default class Chart extends Component {
           </div>
         </div>
         <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} />
-        {/* <Tweet category={getCategoryById(this.state.categories, this.state.outcomeCategories[this.state.outcomeCategories.length] || this.state.outcomeCategories[0])} /> */}
       </React.Fragment>
     )
   }
