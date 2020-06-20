@@ -15,6 +15,7 @@ const Track = (props) => {
             display:'flex',
             alignItems: 'center',
             boxShadow: 'none',
+            background: '#F1E7DE',
             border: '2px solid #000000',
             height: '96px',
             margin: '3px'
@@ -23,8 +24,8 @@ const Track = (props) => {
 
     return (
         <React.Fragment>
-            <Typography variant="h2">Track the</Typography>
-            <Typography variant="h2" gutterBottom={true} color="textSecondary">Impact</Typography>
+            <Typography variant="h2" display="inline">Track the&nbsp;</Typography>
+            <Typography variant="h2" display="inline" color="textSecondary">Impact</Typography>
             <Grid container className="card__container">
                 { outcomes.length === 0 ? <Grid item sm={12} md={12} className="card__placeholder">Your impact here.</Grid> :
                     outcomes.map(outcomeCategory => {

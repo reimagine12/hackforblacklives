@@ -7,13 +7,13 @@ const theme = createMuiTheme({
             fontFamily: 'Roboto Mono',
             fontWeight: '700',
             fontStyle: 'italic',
-            fontSize: '3.5rem',
+            fontSize: '2.5rem',
         },
         h2: {
             fontFamily: 'Roboto Mono',
             fontWeight: '700',
             fontStyle: 'italic',
-            fontSize: '2.5rem',
+            fontSize: '2rem',
         },
         h4: {
             fontFamily: 'Roboto Mono',
