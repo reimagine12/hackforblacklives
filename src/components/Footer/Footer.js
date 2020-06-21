@@ -4,7 +4,7 @@ import './Footer.css'
 
 const Footer = () => (
     <Container maxWidth={false} className="footer">
-    (c) Reimagine12 2020 - Forever | About Project | Data Source
+    (c) Reimagine12 - 2020 | About Project | Data Source
     </Container>
 )
 

@@ -29,20 +29,25 @@ function ChartBar(props) {
     }
   };
 
-  function millBill() {
-    var str = state.updatedValue.toString();
-    var n = str.length;
+  function simpleNum() {
+    let a = state.updatedValue;
     
-    if (n <= 9 && n < 11) {
-    return 'Million';
-  } else { 
-    return 'Billion';
-  }
+    let result;
+    if (a > 999999999) {
+      let y = a * .00000001;
+        let num = y.toFixed(1);
+      result = `${num} Billion`;
+    } else {
+        let z = a * .00000001
+      let sum = z.toFixed(1);
+    result = `${sum} Million`;
+    }
+    return result;
   }
 
   return (
     <div className='chartBar' id={`chartBar-${data.id}`}>
-      <div className='chartBar-label'>{data.label} <br /> ${state.updatedValue.toLocaleString()} {millBill()}</div>
+      <div className='chartBar-label'>{data.label} <br /> ${simpleNum()}</div>
       <Rnd className='chartBar-color'
         style={{
           backgroundColor: barColors[order]
