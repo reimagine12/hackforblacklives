@@ -8,7 +8,11 @@ const ChartScale = (props) => {
     return (
         <div className="chart-scale">
             <div className="chart-scale__label-container">
-                {labels.map((text, index) => <div style={{height: `${height / labels.length}%`}} className="chart-scale__label" key={index}>{text}</div>)}
+                {labels.map((text, index) => 
+                    <div style={{height: `${height / labels.length}%`}} className="chart-scale__label" key={index}>
+                        <div className="chart-scale__label__text">{text}</div>
+                        <div className="chart-scale__label__number">{index + 1}</div>
+                    </div>)}
             </div>
         </div>
     )

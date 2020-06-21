@@ -17,7 +17,24 @@
 .chart .chartBar-label {
   transform: rotate(180deg);
 }
+
 .chart__container {
 	display: flex;
 	padding: 2em 2em 2em 0;
+}
+
+@media(max-width: 768px){
+  .chart, .chartBars {
+    margin: 0;
+    width: 100%;
+  }
+
+  .chart__container {
+    margin-bottom: 1em;
+    padding: 0;
+  }
+
+  .chartBars__wrapper {
+    justify-content: space-between;
+  }
 }

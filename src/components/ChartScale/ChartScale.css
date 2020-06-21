@@ -16,14 +16,17 @@
     border-top: 1px solid #000;
 }
 
-.chart-scale__label::before {
+.chart-scale__label__number {
     display: none;
 }
 
-.chart-scale__label::after {
-    display: inline-flex;
-    margin-left: 5px;
-    width: 10px;
-    height: 14px;
-    content: "";
+@media(max-width: 768px){
+    .chart-scale__label__text {
+        display: none;
+    }
+    .chart-scale__label__number {
+        display: block;
+        margin-right: 4px;
+    }
 }
+

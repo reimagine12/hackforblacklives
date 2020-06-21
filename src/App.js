@@ -22,7 +22,7 @@ function App() {
             <Grid item sm={12} md={8}>
               <Intro />
             </Grid>
-            <Grid item sm={12} md={12}>
+            <Grid item sm={12} md={12} style={{width: '100%'}}>
               <Chart />
             </Grid>
             <Grid item sm={12} md={12}>
