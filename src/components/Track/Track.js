@@ -34,7 +34,7 @@ const Track = (props) => {
                             <Grid item sm={12} md={3} style={{flexGrow: '1'}}>
                                 <ImpactCard>
                                     <img src={data[category.name].image} className="card__image" alt="IMG" />
-                                    <p className="card__text">You funded {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!</p>
+                                    <p className="card__text">{data[category.name].sentence} {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!</p>
                                 </ImpactCard>
                             </Grid>
                         );

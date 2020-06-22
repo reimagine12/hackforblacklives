@@ -158,14 +158,14 @@ export const nonProfits = [
     'name': 'Communities United for Police Reform',
     'path': 'https://www.changethenypd.org/',
     image: cpr,
-    color: 'red',
+    color: '#3a062a',
     
   },
   {
     'name': 'Justice Committee',
     'path': 'https://www.justicecommittee.org',
     image: jc,
-    'color': 'yellow',
+    color: '#000000',
     
 
   },
@@ -173,7 +173,7 @@ export const nonProfits = [
     'name': 'Equality for Flatbush',
     'path': 'http://www.equalityforflatbush.org/',
     image: e4f,
-    'color': '#000000',
+    color: 'yellow',
   },
 ]
 
