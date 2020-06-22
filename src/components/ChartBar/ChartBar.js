@@ -1,6 +1,8 @@
 import React from 'react';
 import './ChartBar.css';
 import { Rnd } from 'react-rnd';
+import { withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import { max, barColors } from '../../config.js';
 
 function ChartBar(props) {
@@ -45,22 +47,41 @@ function ChartBar(props) {
     }
   }
 
+  const ChartTooltip = withStyles({
+    tooltip: {
+      backgroundColor: '#f5f5f9',
+      color: 'rgba(0, 0, 0, 0.87)',
+      maxWidth: 220,
+      border: '1px solid #dadde9',
+    }
+  })(Tooltip);
+
   return (
     <div className='chartBar' id={`chartBar-${data.id}`}>
       <div className='chartBar-label'>{data.label} <br /> ${simpleNum()}</div>
-      <Rnd className='chartBar-color'
-        style={{
-          backgroundColor: barColors[order]
-        }} 
-        default={{
-          width: 30,
-          height: 100,
-        }}
-        size={{ width: 30,  height: getHeight() }}
-        onResizeStop={interactions ? (e, direction, ref, delta) => {
-          updateHeight(delta);
-        } : null}
-      />
+      <ChartTooltip 
+        placement='top' 
+        arrow={true} 
+        title={
+          <React.Fragment>
+            {data.label} <br />
+            ${simpleNum()}
+          </React.Fragment>
+          }>
+        <Rnd className='chartBar-color'
+          style={{
+            backgroundColor: barColors[order]
+          }} 
+          default={{
+            width: 30,
+            height: 100,
+          }}
+          size={{ width: 30,  height: getHeight() }}
+          onResizeStop={interactions ? (e, direction, ref, delta) => {
+            updateHeight(delta);
+          } : null}
+        />
+      </ChartTooltip>
     </div>
   );
 }
