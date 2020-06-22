@@ -31,18 +31,18 @@ function ChartBar(props) {
 
   function simpleNum() {
     let a = state.updatedValue;
-    
-    let result;
+
     if (a > 999999999) {
-      let y = a * .00000001;
-        let num = y.toFixed(1);
-      result = `${num} Billion`;
+      let y = a * .000000001;
+      let num = y.toFixed(1);
+
+      return `${num} Billion`;
     } else {
-        let z = a * .00000001
+      let z = a * .000001
       let sum = z.toFixed(1);
-    result = `${sum} Million`;
+      
+      return `${sum} Million`;
     }
-    return result;
   }
 
   return (
