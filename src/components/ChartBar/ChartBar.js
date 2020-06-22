@@ -34,7 +34,7 @@ function ChartBar(props) {
 
     if (a > 999999999) {
       let y = a * .000000001;
-        let num = y.toFixed(1);
+      let num = y.toFixed(1);
 
       return `${num} Billion`;
     } else {
