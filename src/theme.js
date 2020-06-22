@@ -8,6 +8,9 @@ const theme = createMuiTheme({
             fontWeight: '700',
             fontStyle: 'italic',
             fontSize: '2.5rem',
+            '@media (max-width:414px)': {
+                fontSize: '2rem',
+              },
         },
         h2: {
             fontFamily: 'Roboto Mono',

@@ -1,6 +1,5 @@
 .chart {
-  /*margin: 1em;
-  margin-top: 0;*/
+  width: 100%;
   margin: 1em 1em 1em 0;
   color: #000;
   max-width: 100%;
@@ -8,16 +7,31 @@
 
 .chart .chartBars {
   display: flex;
+  width: 100%;
 }
 
 .chartBars__wrapper {
   display: flex;
+  width: 100%;
 }
 
 .chart .chartBar-label {
   transform: rotate(180deg);
 }
+
 .chart__container {
 	display: flex;
 	padding: 2em 2em 2em 0;
+}
+
+@media(max-width: 768px){
+  .chart, .chartBars {
+    margin: 0;
+    width: 100%;
+  }
+
+  .chart__container {
+    margin: 2em 0;
+    padding: 0;
+  }
 }

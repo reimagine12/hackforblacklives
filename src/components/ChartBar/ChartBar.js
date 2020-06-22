@@ -1,6 +1,8 @@
 import React from 'react';
 import './ChartBar.css';
 import { Rnd } from 'react-rnd';
+import { withStyles } from '@material-ui/core/styles';
+import Tooltip from '@material-ui/core/Tooltip';
 import { max, barColors } from '../../config.js';
 
 function ChartBar(props) {
@@ -45,22 +47,54 @@ function ChartBar(props) {
     }
   }
 
+  const ChartTooltip = withStyles({
+    tooltip: {
+      backgroundColor: barColors[order],
+      color: barColors[order] === 'black' ? '#ffffff' : '#000000',
+      maxWidth: 220,
+      padding: '15px',
+      fontSize: '0.75rem',
+      fontWeight: 700,
+      border: '1px solid #000000',
+      "@media (min-width:768px)": {
+        display: 'none',
+      },
+    },
+    arrow: {
+      "&::before": {
+        border: '1px solid #000000',
+        backgroundColor: barColors[order],
+        boxSizing: "border-box"
+      }
+    }
+  })(Tooltip);
+
   return (
     <div className='chartBar' id={`chartBar-${data.id}`}>
       <div className='chartBar-label'>{data.label} <br /> ${simpleNum()}</div>
-      <Rnd className='chartBar-color'
-        style={{
-          backgroundColor: barColors[order]
-        }} 
-        default={{
-          width: 30,
-          height: 100,
-        }}
-        size={{ width: 30,  height: getHeight() }}
-        onResizeStop={interactions ? (e, direction, ref, delta) => {
-          updateHeight(delta);
-        } : null}
-      />
+      <ChartTooltip 
+        arrow
+        placement='top'  
+        title={
+          <React.Fragment>
+            {data.label} <br />
+            ${simpleNum()}
+          </React.Fragment>
+          }>
+        <Rnd className='chartBar-color'
+          style={{
+            backgroundColor: barColors[order]
+          }} 
+          default={{
+            width: 30,
+            height: 100,
+          }}
+          size={{ width: 30,  height: getHeight() }}
+          onResizeStop={interactions ? (e, direction, ref, delta) => {
+            updateHeight(delta);
+          } : null}
+        />
+      </ChartTooltip>
     </div>
   );
 }

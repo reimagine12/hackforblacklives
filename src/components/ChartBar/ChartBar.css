@@ -27,6 +27,7 @@
   /* override inline style from rnd library */
   top: unset !important;margin-left: 0px;
   left: 0px;
+  border-top: 6px solid rgb(0, 0, 0, 0.2);
 }
 
 .chartBar .chartBar-label {
@@ -35,4 +36,35 @@
   position: absolute;
   bottom: 20px;
   left: 4px;
+}
+
+@media(max-width: 1176px){
+  .chartBar .chartBar-color {
+    /* override inline style from rnd library */
+    width: 50px !important;
+  }
+}
+
+@media(max-width: 768px){
+  .chartBars__wrapper {
+    width: 100%;
+    max-width: 85vw;
+    justify-content: space-around;
+  }
+
+  .chartBar {
+    width: auto;
+    margin: 0;
+  }
+}
+
+@media(max-width: 705px){
+  .chartBar .chartBar-color {
+    /* override inline style from rnd library */
+    width: 24px !important;
+  }
+
+  .chart .chartBar-label {
+    display: none;
+  }
 }
