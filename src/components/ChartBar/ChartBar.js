@@ -49,10 +49,23 @@ function ChartBar(props) {
 
   const ChartTooltip = withStyles({
     tooltip: {
-      backgroundColor: '#f5f5f9',
-      color: 'rgba(0, 0, 0, 0.87)',
+      backgroundColor: barColors[order],
+      color: barColors[order] === 'black' ? '#ffffff' : '#000000',
       maxWidth: 220,
-      border: '1px solid #dadde9',
+      padding: '15px',
+      fontSize: '0.75rem',
+      fontWeight: 700,
+      border: '1px solid #000000',
+      "@media (min-width:768px)": {
+        display: 'none',
+      },
+    },
+    arrow: {
+      "&::before": {
+        border: '1px solid #000000',
+        backgroundColor: barColors[order],
+        boxSizing: "border-box"
+      }
     }
   })(Tooltip);
 
@@ -60,8 +73,8 @@ function ChartBar(props) {
     <div className='chartBar' id={`chartBar-${data.id}`}>
       <div className='chartBar-label'>{data.label} <br /> ${simpleNum()}</div>
       <ChartTooltip 
-        placement='top' 
-        arrow={true} 
+        arrow
+        placement='top'  
         title={
           <React.Fragment>
             {data.label} <br />

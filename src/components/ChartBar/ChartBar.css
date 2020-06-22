@@ -37,19 +37,27 @@
   left: 4px;
 }
 
+@media(max-width: 1176px){
+  .chartBar .chartBar-color {
+    /* override inline style from rnd library */
+    width: 50px !important;
+  }
+}
+
 @media(max-width: 768px){
   .chartBars__wrapper {
     width: 100%;
     max-width: 85vw;
-    justify-content: space-evenly;
+    justify-content: space-around;
   }
 
   .chartBar {
     width: auto;
+    margin: 0;
   }
 }
 
-@media(max-width: 411px){
+@media(max-width: 705px){
   .chartBar .chartBar-color {
     /* override inline style from rnd library */
     width: 24px !important;

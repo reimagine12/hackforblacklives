@@ -1,6 +1,5 @@
 .chart {
-  /*margin: 1em;
-  margin-top: 0;*/
+  width: 100%;
   margin: 1em 1em 1em 0;
   color: #000;
   max-width: 100%;
@@ -8,10 +7,12 @@
 
 .chart .chartBars {
   display: flex;
+  width: 100%;
 }
 
 .chartBars__wrapper {
   display: flex;
+  width: 100%;
 }
 
 .chart .chartBar-label {
@@ -30,11 +31,7 @@
   }
 
   .chart__container {
-    margin-bottom: 1em;
+    margin: 2em 0;
     padding: 0;
-  }
-
-  .chartBars__wrapper {
-    justify-content: space-between;
   }
 }
