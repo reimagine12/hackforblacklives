@@ -24,9 +24,9 @@ export default class Chart extends Component {
   getCategoryById = (categories, id) => categories.find(category => category.id === id);
   sortById = (a, b) => a.id - b.id;
 
-  checkTotals = () => {
+  checkTotals = (policeAmount) => {
     // checks whether the police budget has been reset to initial amount. if so, remove outcomes.
-    if (this.state.police.amount >= data.police.initial_amount) {
+    if (policeAmount >= data.police.initial_amount) {
       this.setState({outcomeCategories: []})
     }
   }
@@ -38,15 +38,17 @@ export default class Chart extends Component {
     if (currentCategory.id === 0) {
       if (value + police.amount > data.police.initial_amount) {
         // do not increase police budget if more than initial amount
-        this.checkTotals();
+        this.checkTotals(value + police.amount);
+
         return;
       }
     }
 
-    if (police.amount === 0) {
+    if (police.amount === 0 && currentCategory.id !== 0) {
       this.setState({
         police: { amount: 0 },
       });
+      
       return;
     }
 
@@ -59,7 +61,6 @@ export default class Chart extends Component {
     }
 
     const newAllocation = currentCategory.amount + value
-
     if (newAllocation > max) {
       return;
     }
@@ -83,7 +84,7 @@ export default class Chart extends Component {
       outcomeCategories: newOutcomes,
     });
 
-    this.checkTotals();
+    this.checkTotals(this.state.police.amount);
   }
 
   decrease = (value, category) => {
@@ -93,7 +94,6 @@ export default class Chart extends Component {
 
     if (category !== 0 || newAmount < 0) {
       if (newAmount < this.getDataById(category).initial_amount) {
-        this.checkTotals();
         return;
       }
     }
@@ -121,6 +121,8 @@ export default class Chart extends Component {
       police: { amount: police.amount + value },
       outcomeCategories: newOutcomes,
     });
+
+    this.checkTotals(this.state.categories[0].amount);
   }
 
   render() {
@@ -136,7 +138,7 @@ export default class Chart extends Component {
             </div>
           </div>
         </div>
-        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} policeAmount={this.state.police} />
+        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} policeAmount={this.state.categories[0].amount} />
       </React.Fragment>
     )
   }

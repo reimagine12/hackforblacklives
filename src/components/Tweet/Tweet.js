@@ -12,13 +12,8 @@ const Tweet = (props) => {
     const { category, policeAmount } = props;
 
     const percentDecrease = () => {
-        console.log(policeAmount.amount)
-        let percent = (policeAmount.amount - data.police.initial_amount) / data.police.initial_amount * 100;
-        if (percent <= -100) {
-            return 100;
-        }
-
-        return percent.toFixed(1) * -1;
+        let percent = (policeAmount - data.police.initial_amount) / data.police.initial_amount * 100;
+        return percent.toFixed(2) * -1;
     }
 
     const TweetButton = withStyles({
