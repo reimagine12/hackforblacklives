@@ -9,7 +9,23 @@ import { url, data } from '../../config';
 import './Tweet.css';
 
 const Tweet = (props) => {
-    const achievement = props.category;
+    const { category, policeAmount } = props;
+
+    const percentDecrease = () => {
+        console.log('current police amount', policeAmount.amount)
+        let percent = (policeAmount.amount - data.police.initial_amount) / data.police.initial_amount * 100;
+        console.log('percent', percent)
+        if (percent <= -100) {
+            return 100;
+        }
+
+        if ( percent < 0) { 
+            return percent.toFixed(1) * -1;
+        }
+
+        return percent.toFixed(1);
+    }
+
     const TweetButton = withStyles({
         root: {
             textTransform: 'none',
@@ -25,13 +41,13 @@ const Tweet = (props) => {
 
     // check props for most recent/highest achievement
     let message;
-    if (achievement) {
-        message = `@NYCMayor By cutting the NYPD budget, I ${data[achievement.name].sentence} ${achievement.outcomeNumber.toLocaleString()} ${data[achievement.name].impact}! See what you can change:`;
+    if (category) {
+        message = `@NYCMayor By cutting the NYPD budget by ${percentDecrease()}%, I ${data[category.name].sentence} ${category.outcomeNumber.toLocaleString()} ${data[category.name].impact}! See what you can change:`;
     }
 
     return (
         <React.Fragment>
-       { achievement &&
+       { category &&
             <Grid container className='tweet__container'>
                 <Grid item sm={12} md={3} style={{flexGrow: '1', justifyContent: 'flex-end'}}>
                     <TwitterShareButton 

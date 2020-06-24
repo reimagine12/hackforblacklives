@@ -8,7 +8,7 @@ import { data } from '../../config.js';
 import './Track.css';
 
 const Track = (props) => {
-    const { outcomes, categories, getCategoryById } = props;
+    const { outcomes, categories, getCategoryById, policeAmount } = props;
 
     const ImpactCard = withStyles({
         root: {
@@ -40,7 +40,7 @@ const Track = (props) => {
                         );
                     })}
             </Grid>
-            <Tweet category={getCategoryById(categories, outcomes[0])} />
+            <Tweet category={getCategoryById(categories, outcomes[0])} policeAmount={policeAmount} />
       </React.Fragment>
     )
 }

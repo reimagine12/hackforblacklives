@@ -28,6 +28,11 @@ export default class Chart extends Component {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
 
+    console.log(value, currentCategory)
+    if (value + police.amount > data.police.initial_amount) {
+      return;
+    }
+    
     if (police.amount === 0) {
       this.setState({
         police: { amount: 0 },
@@ -117,7 +122,7 @@ export default class Chart extends Component {
             </div>
           </div>
         </div>
-        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} />
+        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} policeAmount={this.state.police} />
       </React.Fragment>
     )
   }
