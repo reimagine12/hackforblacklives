@@ -23,16 +23,26 @@ export default class Chart extends Component {
   getDataById = (categoryName) => data[categories[categoryName]];
   getCategoryById = (categories, id) => categories.find(category => category.id === id);
   sortById = (a, b) => a.id - b.id;
+
+  checkTotals = () => {
+    // checks whether the police budget has been reset to initial amount. if so, remove outcomes.
+    if (this.state.police.amount >= data.police.initial_amount) {
+      this.setState({outcomeCategories: []})
+    }
+  }
   
   increase = (value, category) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
 
-    console.log(value, currentCategory)
-    if (value + police.amount > data.police.initial_amount) {
-      return;
+    if (currentCategory.id === 0) {
+      if (value + police.amount > data.police.initial_amount) {
+        // do not increase police budget if more than initial amount
+        this.checkTotals();
+        return;
+      }
     }
-    
+
     if (police.amount === 0) {
       this.setState({
         police: { amount: 0 },
@@ -53,6 +63,7 @@ export default class Chart extends Component {
     if (newAllocation > max) {
       return;
     }
+
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor(newAllocation / denom))
     let newOutcomes = this.state.outcomeCategories;
@@ -71,6 +82,8 @@ export default class Chart extends Component {
       police: { amount: police.amount - value },
       outcomeCategories: newOutcomes,
     });
+
+    this.checkTotals();
   }
 
   decrease = (value, category) => {
@@ -80,6 +93,7 @@ export default class Chart extends Component {
 
     if (category !== 0 || newAmount < 0) {
       if (newAmount < this.getDataById(category).initial_amount) {
+        this.checkTotals();
         return;
       }
     }
