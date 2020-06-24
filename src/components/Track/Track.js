@@ -8,7 +8,7 @@ import { data } from '../../config.js';
 import './Track.css';
 
 const Track = (props) => {
-    const { outcomes, categories, getCategoryById } = props;
+    const { outcomes, categories, getCategoryById, policeAmount } = props;
 
     const ImpactCard = withStyles({
         root: {
@@ -34,13 +34,13 @@ const Track = (props) => {
                             <Grid item sm={12} md={3} style={{flexGrow: '1'}}>
                                 <ImpactCard>
                                     <img src={data[category.name].image} className="card__image" alt="IMG" />
-                                    <p className="card__text">{data[category.name].sentence} {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!</p>
+                                    <p className="card__text">You {data[category.name].sentence} {category.outcomeNumber.toLocaleString()} {data[category.name].impact}!</p>
                                 </ImpactCard>
                             </Grid>
                         );
                     })}
             </Grid>
-            <Tweet category={getCategoryById(categories, outcomes.length || outcomes[0])} />
+            <Tweet category={getCategoryById(categories, outcomes[0])} policeAmount={policeAmount} />
       </React.Fragment>
     )
 }

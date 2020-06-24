@@ -23,28 +23,48 @@ export default class Chart extends Component {
   getDataById = (categoryName) => data[categories[categoryName]];
   getCategoryById = (categories, id) => categories.find(category => category.id === id);
   sortById = (a, b) => a.id - b.id;
+
+  checkTotals = (policeAmount) => {
+    // checks whether the police budget has been reset to initial amount. if so, remove outcomes.
+    if (policeAmount >= data.police.initial_amount) {
+      this.setState({outcomeCategories: []})
+    }
+  }
   
   increase = (value, category) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
 
-    if (currentCategory.id !== 0) {
-      if (police.amount === 0) {
+    if (currentCategory.id === 0) {
+      if (value + police.amount > data.police.initial_amount) {
+        // do not increase police budget if more than initial amount
+        this.checkTotals(value + police.amount);
+
         return;
       }
+    }
 
-      if (police.amount <= 60000000) { 
-        // amount where the values become too small to adjust with the bars. set police amount to zero.
+    if (police.amount === 0 && currentCategory.id !== 0) {
+      this.setState({
+        police: { amount: 0 },
+      });
+      
+      return;
+    }
+
+    if (currentCategory.id !== 0) {
+      if (police.amount <= 100000000) { 
+        // when values become too small to adjust with the bars, set police amount to zero.
         value = value + police.amount;
         police.amount = 0;
       }
     }
 
     const newAllocation = currentCategory.amount + value
-
     if (newAllocation > max) {
       return;
     }
+
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor(newAllocation / denom))
     let newOutcomes = this.state.outcomeCategories;
@@ -63,6 +83,8 @@ export default class Chart extends Component {
       police: { amount: police.amount - value },
       outcomeCategories: newOutcomes,
     });
+
+    this.checkTotals(this.state.police.amount);
   }
 
   decrease = (value, category) => {
@@ -99,6 +121,8 @@ export default class Chart extends Component {
       police: { amount: police.amount + value },
       outcomeCategories: newOutcomes,
     });
+
+    this.checkTotals(this.state.categories[0].amount);
   }
 
   render() {
@@ -114,7 +138,7 @@ export default class Chart extends Component {
             </div>
           </div>
         </div>
-        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} />
+        <Track outcomes={this.state.outcomeCategories} categories={this.state.categories} getCategoryById={this.getCategoryById} policeAmount={this.state.categories[0].amount} />
       </React.Fragment>
     )
   }
