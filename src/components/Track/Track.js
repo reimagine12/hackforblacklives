@@ -40,7 +40,7 @@ const Track = (props) => {
                         );
                     })}
             </Grid>
-            <Tweet category={getCategoryById(categories, outcomes.length || outcomes[0])} />
+            <Tweet category={getCategoryById(categories, outcomes[0])} />
       </React.Fragment>
     )
 }
