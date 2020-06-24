@@ -27,6 +27,7 @@ export default class Chart extends Component {
   checkTotals = (policeAmount) => {
     // checks whether the police budget has been reset to initial amount. if so, remove outcomes.
     if (policeAmount >= data.police.initial_amount) {
+      console.log('checktotals', policeAmount)
       this.setState({outcomeCategories: []})
     }
   }
@@ -34,12 +35,12 @@ export default class Chart extends Component {
   increase = (value, category) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
+    console.log('increase', 'curCat:', currentCategory, 'val:', value)
 
     if (currentCategory.id === 0) {
       if (value + police.amount > data.police.initial_amount) {
         // do not increase police budget if more than initial amount
-        this.checkTotals(value + police.amount);
-
+        // this.checkTotals(value + police.amount);
         return;
       }
     }
@@ -91,9 +92,11 @@ export default class Chart extends Component {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
     const newAmount = currentCategory.amount - value;
+    console.log('decrease', 'curCat:', currentCategory, 'val:', value, 'newamnt:', newAmount)
 
     if (category !== 0 || newAmount < 0) {
       if (newAmount < this.getDataById(category).initial_amount) {
+        console.log('decrease:', this.getDataById(category))
         return;
       }
     }
