@@ -91,14 +91,17 @@ export default class Chart extends Component {
   decrease = (value, category) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
-    const newAmount = currentCategory.amount - value;
+    let newAmount = currentCategory.amount - value;
     console.log('decrease', 'curCat:', currentCategory, 'val:', value, 'newamnt:', newAmount)
 
     if (category !== 0 || newAmount < 0) {
-      if (newAmount < this.getDataById(category).initial_amount) {
+      if (newAmount < this.getDataById(category).initial_amount && category !== 0) {
         console.log('decrease:', this.getDataById(category))
-        return;
+          return;
       }
+      if (category === 0) {
+        newAmount = 0;
+      } 
     }
 
     const newAllocation = currentCategory.allocation - value;
