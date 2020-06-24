@@ -28,13 +28,16 @@ export default class Chart extends Component {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
 
-    if (currentCategory.id !== 0) {
-      if (police.amount === 0) {
-        return;
-      }
+    if (police.amount === 0) {
+      this.setState({
+        police: { amount: 0 },
+      });
+      return;
+    }
 
-      if (police.amount <= 60000000) { 
-        // amount where the values become too small to adjust with the bars. set police amount to zero.
+    if (currentCategory.id !== 0) {
+      if (police.amount <= 100000000) { 
+        // when values become too small to adjust with the bars, set police amount to zero.
         value = value + police.amount;
         police.amount = 0;
       }
