@@ -26,7 +26,7 @@ const Tweet = (props) => {
     // check props for most recent/highest achievement
     let message;
     if (achievement) {
-        message = `@NYCMayor By cutting the NYPD budget, I managed to fund ${achievement.outcomeNumber.toLocaleString()} ${data[achievement.name].impact}! See what you can change:`;
+        message = `@NYCMayor By cutting the NYPD budget, I ${data[achievement.name].sentence} ${achievement.outcomeNumber.toLocaleString()} ${data[achievement.name].impact}! See what you can change:`;
     }
 
     return (
