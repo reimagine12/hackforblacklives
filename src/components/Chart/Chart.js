@@ -31,16 +31,24 @@ export default class Chart extends Component {
     }
   }
   
-  increase = (value, category) => {
+  increase = (value, category, decreaseCategory = null) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
 
     if (currentCategory.id === 0) {
       if (value + police.amount > data.police.initial_amount) {
         // do not increase police budget if more than initial amount
-        this.checkTotals(value + police.amount);
-
         return;
+      }
+
+      if (decreaseCategory !== null) {
+        // do not increase police budget from decreasing category at initial amount
+        const decreaseCategoryAmnt = this.getCategoryById(this.state.categories, decreaseCategory).amount;
+        const decreaseCategoryMin = this.getDataById(decreaseCategory).initial_amount;
+
+        if (decreaseCategoryAmnt <= decreaseCategoryMin) {
+          return;
+        }
       }
     }
 
@@ -57,6 +65,9 @@ export default class Chart extends Component {
         // when values become too small to adjust with the bars, set police amount to zero.
         value = value + police.amount;
         police.amount = 0;
+      }
+      if (police.amount - value < 0) {
+        value = police.amount;
       }
     }
 
@@ -90,18 +101,23 @@ export default class Chart extends Component {
   decrease = (value, category) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
-    const newAmount = currentCategory.amount - value;
+    let newAmount = currentCategory.amount - value;
 
     if (category !== 0 || newAmount < 0) {
-      if (newAmount < this.getDataById(category).initial_amount) {
+      if (newAmount < this.getDataById(category).initial_amount && category !== 0) {
+
         return;
       }
+      if (newAmount <= 0 && category === 0) {
+        newAmount = 0;
+      } 
     }
 
     const newAllocation = currentCategory.allocation - value;
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor((newAllocation / denom)))
     let newOutcomes = this.state.outcomeCategories;
+
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
       const index = newOutcomes.indexOf(category);
       if (index > -1) {
