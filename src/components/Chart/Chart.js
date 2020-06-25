@@ -31,7 +31,7 @@ export default class Chart extends Component {
     }
   }
   
-  increase = (value, category) => {
+  increase = (value, category, decreaseCategory = null) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
 
@@ -39,6 +39,16 @@ export default class Chart extends Component {
       if (value + police.amount > data.police.initial_amount) {
         // do not increase police budget if more than initial amount
         return;
+      }
+
+      if (decreaseCategory !== null) {
+        // do not increase police budget from decreasing category at initial amount
+        const decreaseCategoryAmnt = this.getCategoryById(this.state.categories, decreaseCategory).amount;
+        const decreaseCategoryMin = this.getDataById(decreaseCategory).initial_amount;
+
+        if (decreaseCategoryAmnt <= decreaseCategoryMin) {
+          return;
+        }
       }
     }
 

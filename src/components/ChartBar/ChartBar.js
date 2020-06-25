@@ -27,7 +27,7 @@ function ChartBar(props) {
       decreaseBudget(changeInDollars, 0);
     } else {
       decreaseBudget(changeInDollars, data.id);
-      increaseBudget(changeInDollars, 0);
+      increaseBudget(changeInDollars, 0, data.id);
     }
   };
 
