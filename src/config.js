@@ -177,4 +177,4 @@ export const nonProfits = [
   },
 ]
 
-export const url = "http://www.reimagine12.com";
+export const url = "https://reimagine12.herokuapp.com/";
