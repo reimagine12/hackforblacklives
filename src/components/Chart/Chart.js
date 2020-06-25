@@ -27,7 +27,6 @@ export default class Chart extends Component {
   checkTotals = (policeAmount) => {
     // checks whether the police budget has been reset to initial amount. if so, remove outcomes.
     if (policeAmount >= data.police.initial_amount) {
-      console.log('checktotals', policeAmount)
       this.setState({outcomeCategories: []})
     }
   }
@@ -35,12 +34,10 @@ export default class Chart extends Component {
   increase = (value, category) => {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
-    console.log('increase', 'curCat:', currentCategory, 'val:', value)
 
     if (currentCategory.id === 0) {
       if (value + police.amount > data.police.initial_amount) {
         // do not increase police budget if more than initial amount
-        // this.checkTotals(value + police.amount);
         return;
       }
     }
@@ -58,6 +55,9 @@ export default class Chart extends Component {
         // when values become too small to adjust with the bars, set police amount to zero.
         value = value + police.amount;
         police.amount = 0;
+      }
+      if (police.amount - value < 0) {
+        value = police.amount;
       }
     }
 
@@ -92,14 +92,13 @@ export default class Chart extends Component {
     const police = this.getCategoryById(this.state.categories, 0);
     const currentCategory = this.getCategoryById(this.state.categories, category);
     let newAmount = currentCategory.amount - value;
-    console.log('decrease', 'curCat:', currentCategory, 'val:', value, 'newamnt:', newAmount)
 
     if (category !== 0 || newAmount < 0) {
       if (newAmount < this.getDataById(category).initial_amount && category !== 0) {
-        console.log('decrease:', this.getDataById(category))
-          return;
+
+        return;
       }
-      if (category === 0) {
+      if (newAmount <= 0 && category === 0) {
         newAmount = 0;
       } 
     }
@@ -108,6 +107,7 @@ export default class Chart extends Component {
     const denom = this.getDataById(category).per_unit
     const outcomeNumber = Number(Math.floor((newAllocation / denom)))
     let newOutcomes = this.state.outcomeCategories;
+
     if (outcomeNumber < 1 && this.state.outcomeCategories.includes(category)) {
       const index = newOutcomes.indexOf(category);
       if (index > -1) {
